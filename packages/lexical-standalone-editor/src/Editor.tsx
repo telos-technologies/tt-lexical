@@ -267,7 +267,6 @@ export const LexicalEditor = ({
     theme: PlaygroundEditorTheme,
   };
 
-  // some comment
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <SharedHistoryContext>
