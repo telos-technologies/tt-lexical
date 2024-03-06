@@ -19033,7 +19033,7 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-5afa9ac6.js'); }));
+const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-1c133621.js'); }));
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19157,7 +19157,7 @@ function $isEquationNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-72ef097d.js'); }));
+const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-c9696683.js'); }));
 function convertImageElement(domNode) {
   const img = domNode;
   if (img.src.startsWith('file:///')) {
@@ -19326,7 +19326,7 @@ function $isImageNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-405a4667.js'); }));
+const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-efe9a8af.js'); }));
 function convertInlineImageElement(domNode) {
   if (domNode instanceof HTMLImageElement) {
     const {
@@ -19741,7 +19741,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-6874face.js'); }));
+const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-df509fe2.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -36475,10 +36475,10 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-975fb6ee.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-840fe014.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-87b80e7c.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-4d713617.js'); }).then(function (n) { return n.parserMarkdown; })
+  css: () => Promise.resolve().then(function () { return require('./parser-postcss-86783ad0.js'); }).then(function (n) { return n.parserPostcss; }),
+  html: () => Promise.resolve().then(function () { return require('./parser-html-49fb712d.js'); }).then(function (n) { return n.parserHtml; }),
+  js: () => Promise.resolve().then(function () { return require('./parser-babel-5bb2a846.js'); }).then(function (n) { return n.parserBabel; }),
+  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-7abc0e0b.js'); }).then(function (n) { return n.parserMarkdown; })
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -36487,7 +36487,7 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-  } = await Promise.resolve().then(function () { return require('./standalone-c276018a.js'); }).then(function (n) { return n.standalone; });
+  } = await Promise.resolve().then(function () { return require('./standalone-88bd8d9c.js'); }).then(function (n) { return n.standalone; });
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {
@@ -39402,163 +39402,6 @@ function setFloatingElemPosition(targetRect, floatingElem, anchorElem, isLink = 
  * LICENSE file in the root directory of this source tree.
  *
  */
-const useLayoutEffectImpl = CAN_USE_DOM ? React.useLayoutEffect : React.useEffect;
-var useLayoutEffect = useLayoutEffectImpl;
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-const theme = {
-  blockCursor: 'PlaygroundEditorTheme__blockCursor',
-  characterLimit: 'PlaygroundEditorTheme__characterLimit',
-  code: 'PlaygroundEditorTheme__code',
-  codeHighlight: {
-    atrule: 'PlaygroundEditorTheme__tokenAttr',
-    attr: 'PlaygroundEditorTheme__tokenAttr',
-    boolean: 'PlaygroundEditorTheme__tokenProperty',
-    builtin: 'PlaygroundEditorTheme__tokenSelector',
-    cdata: 'PlaygroundEditorTheme__tokenComment',
-    char: 'PlaygroundEditorTheme__tokenSelector',
-    class: 'PlaygroundEditorTheme__tokenFunction',
-    'class-name': 'PlaygroundEditorTheme__tokenFunction',
-    comment: 'PlaygroundEditorTheme__tokenComment',
-    constant: 'PlaygroundEditorTheme__tokenProperty',
-    deleted: 'PlaygroundEditorTheme__tokenProperty',
-    doctype: 'PlaygroundEditorTheme__tokenComment',
-    entity: 'PlaygroundEditorTheme__tokenOperator',
-    function: 'PlaygroundEditorTheme__tokenFunction',
-    important: 'PlaygroundEditorTheme__tokenVariable',
-    inserted: 'PlaygroundEditorTheme__tokenSelector',
-    keyword: 'PlaygroundEditorTheme__tokenAttr',
-    namespace: 'PlaygroundEditorTheme__tokenVariable',
-    number: 'PlaygroundEditorTheme__tokenProperty',
-    operator: 'PlaygroundEditorTheme__tokenOperator',
-    prolog: 'PlaygroundEditorTheme__tokenComment',
-    property: 'PlaygroundEditorTheme__tokenProperty',
-    punctuation: 'PlaygroundEditorTheme__tokenPunctuation',
-    regex: 'PlaygroundEditorTheme__tokenVariable',
-    selector: 'PlaygroundEditorTheme__tokenSelector',
-    string: 'PlaygroundEditorTheme__tokenSelector',
-    symbol: 'PlaygroundEditorTheme__tokenProperty',
-    tag: 'PlaygroundEditorTheme__tokenProperty',
-    url: 'PlaygroundEditorTheme__tokenOperator',
-    variable: 'PlaygroundEditorTheme__tokenVariable'
-  },
-  embedBlock: {
-    base: 'PlaygroundEditorTheme__embedBlock',
-    focus: 'PlaygroundEditorTheme__embedBlockFocus'
-  },
-  hashtag: 'PlaygroundEditorTheme__hashtag',
-  heading: {
-    h1: 'PlaygroundEditorTheme__h1',
-    h2: 'PlaygroundEditorTheme__h2',
-    h3: 'PlaygroundEditorTheme__h3',
-    h4: 'PlaygroundEditorTheme__h4',
-    h5: 'PlaygroundEditorTheme__h5',
-    h6: 'PlaygroundEditorTheme__h6'
-  },
-  image: 'editor-image',
-  indent: 'PlaygroundEditorTheme__indent',
-  inlineImage: 'inline-editor-image',
-  layoutContainer: 'PlaygroundEditorTheme__layoutContainer',
-  layoutItem: 'PlaygroundEditorTheme__layoutItem',
-  link: 'PlaygroundEditorTheme__link',
-  list: {
-    checklist: 'PlaygroundEditorTheme__checklist',
-    listitem: 'PlaygroundEditorTheme__listItem',
-    listitemChecked: 'PlaygroundEditorTheme__listItemChecked',
-    listitemUnchecked: 'PlaygroundEditorTheme__listItemUnchecked',
-    nested: {
-      listitem: 'PlaygroundEditorTheme__nestedListItem'
-    },
-    olDepth: ['PlaygroundEditorTheme__ol1', 'PlaygroundEditorTheme__ol2', 'PlaygroundEditorTheme__ol3', 'PlaygroundEditorTheme__ol4', 'PlaygroundEditorTheme__ol5'],
-    ul: 'PlaygroundEditorTheme__ul'
-  },
-  ltr: 'PlaygroundEditorTheme__ltr',
-  mark: 'PlaygroundEditorTheme__mark',
-  markOverlap: 'PlaygroundEditorTheme__markOverlap',
-  paragraph: 'PlaygroundEditorTheme__paragraph',
-  quote: 'PlaygroundEditorTheme__quote',
-  rtl: 'PlaygroundEditorTheme__rtl',
-  table: 'PlaygroundEditorTheme__table',
-  tableAddColumns: 'PlaygroundEditorTheme__tableAddColumns',
-  tableAddRows: 'PlaygroundEditorTheme__tableAddRows',
-  tableCell: 'PlaygroundEditorTheme__tableCell',
-  tableCellActionButton: 'PlaygroundEditorTheme__tableCellActionButton',
-  tableCellActionButtonContainer: 'PlaygroundEditorTheme__tableCellActionButtonContainer',
-  tableCellEditing: 'PlaygroundEditorTheme__tableCellEditing',
-  tableCellHeader: 'PlaygroundEditorTheme__tableCellHeader',
-  tableCellPrimarySelected: 'PlaygroundEditorTheme__tableCellPrimarySelected',
-  tableCellResizer: 'PlaygroundEditorTheme__tableCellResizer',
-  tableCellSelected: 'PlaygroundEditorTheme__tableCellSelected',
-  tableCellSortedIndicator: 'PlaygroundEditorTheme__tableCellSortedIndicator',
-  tableResizeRuler: 'PlaygroundEditorTheme__tableCellResizeRuler',
-  tableSelected: 'PlaygroundEditorTheme__tableSelected',
-  tableSelection: 'PlaygroundEditorTheme__tableSelection',
-  text: {
-    bold: 'PlaygroundEditorTheme__textBold',
-    code: 'PlaygroundEditorTheme__textCode',
-    italic: 'PlaygroundEditorTheme__textItalic',
-    strikethrough: 'PlaygroundEditorTheme__textStrikethrough',
-    subscript: 'PlaygroundEditorTheme__textSubscript',
-    superscript: 'PlaygroundEditorTheme__textSuperscript',
-    underline: 'PlaygroundEditorTheme__textUnderline',
-    underlineStrikethrough: 'PlaygroundEditorTheme__textUnderlineStrikethrough'
-  }
-};
-var baseTheme = theme;
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-function LexicalContentEditable({
-  className
-}) {
-  return /*#__PURE__*/React.createElement(LexicalContentEditable$1.ContentEditable, {
-    className: className || 'ContentEditable__root'
-  });
-}
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-function Placeholder({
-  children,
-  className
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    className: className || 'Placeholder__root'
-  }, children);
-}
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-const INSERT_INLINE_COMMAND = lexical.createCommand('INSERT_INLINE_COMMAND');
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 function TextFormatFloatingToolbar({
   editor,
   anchorElem,
@@ -39579,9 +39422,6 @@ function TextFormatFloatingToolbar({
       editor.dispatchCommand(link.TOGGLE_LINK_COMMAND, null);
     }
   }, [editor, isLink]);
-  const insertComment = () => {
-    editor.dispatchCommand(INSERT_INLINE_COMMAND, undefined);
-  };
   function mouseMoveListener(e) {
     if (popupCharStylesEditorRef?.current && (e.buttons === 1 || e.buttons === 3)) {
       if (popupCharStylesEditorRef.current.style.pointerEvents !== 'none') {
@@ -39733,14 +39573,7 @@ function TextFormatFloatingToolbar({
     "aria-label": "Insert link"
   }, /*#__PURE__*/React.createElement("i", {
     className: "format link"
-  }))), /*#__PURE__*/React.createElement("button", {
-    type: "button",
-    onClick: insertComment,
-    className: 'popup-item spaced insert-comment',
-    "aria-label": "Insert comment"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "format add-comment"
-  })));
+  }))));
 }
 function useFloatingTextFormatToolbar(editor, anchorElem) {
   const [isText, setIsText] = React.useState(false);
@@ -41505,6 +41338,16 @@ CAN_USE_DOM && /AppleWebKit\/[\d.]+/.test(navigator.userAgent) && !IS_CHROME;
  * LICENSE file in the root directory of this source tree.
  *
  */
+const useLayoutEffectImpl = CAN_USE_DOM ? React.useLayoutEffect : React.useEffect;
+var useLayoutEffect = useLayoutEffectImpl;
+
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
 const copy = text => {
   const textArea = document.createElement('textarea');
   textArea.value = text || '';
@@ -43010,6 +42853,144 @@ function TypingPerfPlugin() {
     };
   }, [report]);
   return null;
+}
+
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+const theme = {
+  blockCursor: 'PlaygroundEditorTheme__blockCursor',
+  characterLimit: 'PlaygroundEditorTheme__characterLimit',
+  code: 'PlaygroundEditorTheme__code',
+  codeHighlight: {
+    atrule: 'PlaygroundEditorTheme__tokenAttr',
+    attr: 'PlaygroundEditorTheme__tokenAttr',
+    boolean: 'PlaygroundEditorTheme__tokenProperty',
+    builtin: 'PlaygroundEditorTheme__tokenSelector',
+    cdata: 'PlaygroundEditorTheme__tokenComment',
+    char: 'PlaygroundEditorTheme__tokenSelector',
+    class: 'PlaygroundEditorTheme__tokenFunction',
+    'class-name': 'PlaygroundEditorTheme__tokenFunction',
+    comment: 'PlaygroundEditorTheme__tokenComment',
+    constant: 'PlaygroundEditorTheme__tokenProperty',
+    deleted: 'PlaygroundEditorTheme__tokenProperty',
+    doctype: 'PlaygroundEditorTheme__tokenComment',
+    entity: 'PlaygroundEditorTheme__tokenOperator',
+    function: 'PlaygroundEditorTheme__tokenFunction',
+    important: 'PlaygroundEditorTheme__tokenVariable',
+    inserted: 'PlaygroundEditorTheme__tokenSelector',
+    keyword: 'PlaygroundEditorTheme__tokenAttr',
+    namespace: 'PlaygroundEditorTheme__tokenVariable',
+    number: 'PlaygroundEditorTheme__tokenProperty',
+    operator: 'PlaygroundEditorTheme__tokenOperator',
+    prolog: 'PlaygroundEditorTheme__tokenComment',
+    property: 'PlaygroundEditorTheme__tokenProperty',
+    punctuation: 'PlaygroundEditorTheme__tokenPunctuation',
+    regex: 'PlaygroundEditorTheme__tokenVariable',
+    selector: 'PlaygroundEditorTheme__tokenSelector',
+    string: 'PlaygroundEditorTheme__tokenSelector',
+    symbol: 'PlaygroundEditorTheme__tokenProperty',
+    tag: 'PlaygroundEditorTheme__tokenProperty',
+    url: 'PlaygroundEditorTheme__tokenOperator',
+    variable: 'PlaygroundEditorTheme__tokenVariable'
+  },
+  embedBlock: {
+    base: 'PlaygroundEditorTheme__embedBlock',
+    focus: 'PlaygroundEditorTheme__embedBlockFocus'
+  },
+  hashtag: 'PlaygroundEditorTheme__hashtag',
+  heading: {
+    h1: 'PlaygroundEditorTheme__h1',
+    h2: 'PlaygroundEditorTheme__h2',
+    h3: 'PlaygroundEditorTheme__h3',
+    h4: 'PlaygroundEditorTheme__h4',
+    h5: 'PlaygroundEditorTheme__h5',
+    h6: 'PlaygroundEditorTheme__h6'
+  },
+  image: 'editor-image',
+  indent: 'PlaygroundEditorTheme__indent',
+  inlineImage: 'inline-editor-image',
+  layoutContainer: 'PlaygroundEditorTheme__layoutContainer',
+  layoutItem: 'PlaygroundEditorTheme__layoutItem',
+  link: 'PlaygroundEditorTheme__link',
+  list: {
+    checklist: 'PlaygroundEditorTheme__checklist',
+    listitem: 'PlaygroundEditorTheme__listItem',
+    listitemChecked: 'PlaygroundEditorTheme__listItemChecked',
+    listitemUnchecked: 'PlaygroundEditorTheme__listItemUnchecked',
+    nested: {
+      listitem: 'PlaygroundEditorTheme__nestedListItem'
+    },
+    olDepth: ['PlaygroundEditorTheme__ol1', 'PlaygroundEditorTheme__ol2', 'PlaygroundEditorTheme__ol3', 'PlaygroundEditorTheme__ol4', 'PlaygroundEditorTheme__ol5'],
+    ul: 'PlaygroundEditorTheme__ul'
+  },
+  ltr: 'PlaygroundEditorTheme__ltr',
+  mark: 'PlaygroundEditorTheme__mark',
+  markOverlap: 'PlaygroundEditorTheme__markOverlap',
+  paragraph: 'PlaygroundEditorTheme__paragraph',
+  quote: 'PlaygroundEditorTheme__quote',
+  rtl: 'PlaygroundEditorTheme__rtl',
+  table: 'PlaygroundEditorTheme__table',
+  tableAddColumns: 'PlaygroundEditorTheme__tableAddColumns',
+  tableAddRows: 'PlaygroundEditorTheme__tableAddRows',
+  tableCell: 'PlaygroundEditorTheme__tableCell',
+  tableCellActionButton: 'PlaygroundEditorTheme__tableCellActionButton',
+  tableCellActionButtonContainer: 'PlaygroundEditorTheme__tableCellActionButtonContainer',
+  tableCellEditing: 'PlaygroundEditorTheme__tableCellEditing',
+  tableCellHeader: 'PlaygroundEditorTheme__tableCellHeader',
+  tableCellPrimarySelected: 'PlaygroundEditorTheme__tableCellPrimarySelected',
+  tableCellResizer: 'PlaygroundEditorTheme__tableCellResizer',
+  tableCellSelected: 'PlaygroundEditorTheme__tableCellSelected',
+  tableCellSortedIndicator: 'PlaygroundEditorTheme__tableCellSortedIndicator',
+  tableResizeRuler: 'PlaygroundEditorTheme__tableCellResizeRuler',
+  tableSelected: 'PlaygroundEditorTheme__tableSelected',
+  tableSelection: 'PlaygroundEditorTheme__tableSelection',
+  text: {
+    bold: 'PlaygroundEditorTheme__textBold',
+    code: 'PlaygroundEditorTheme__textCode',
+    italic: 'PlaygroundEditorTheme__textItalic',
+    strikethrough: 'PlaygroundEditorTheme__textStrikethrough',
+    subscript: 'PlaygroundEditorTheme__textSubscript',
+    superscript: 'PlaygroundEditorTheme__textSuperscript',
+    underline: 'PlaygroundEditorTheme__textUnderline',
+    underlineStrikethrough: 'PlaygroundEditorTheme__textUnderlineStrikethrough'
+  }
+};
+var baseTheme = theme;
+
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+function LexicalContentEditable({
+  className
+}) {
+  return /*#__PURE__*/React.createElement(LexicalContentEditable$1.ContentEditable, {
+    className: className || 'ContentEditable__root'
+  });
+}
+
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+function Placeholder({
+  children,
+  className
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: className || 'Placeholder__root'
+  }, children);
 }
 
 /**
