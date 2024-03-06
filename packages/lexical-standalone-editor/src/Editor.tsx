@@ -84,6 +84,7 @@ type NormalizedEditorProps = Omit<Settings, 'measureTypingPerf'>;
 type EditorProps = NormalizedEditorProps & {
   showActions?: boolean;
   showToolbar?: boolean;
+  articleCssClass?: string;
 };
 
 function Editor({
@@ -99,6 +100,7 @@ function Editor({
   tableCellBackgroundColor,
   showActions,
   showToolbar = true,
+  articleCssClass,
 }: EditorProps): JSX.Element {
   const {historyState} = useSharedHistoryContext();
 
@@ -160,9 +162,9 @@ function Editor({
             <RichTextPlugin
               contentEditable={
                 <div className="editor-scroller">
-                  <div className="editor" ref={onRef}>
+                  <article className={`editor ${articleCssClass}`} ref={onRef}>
                     <ContentEditable />
-                  </div>
+                  </article>
                 </div>
               }
               placeholder={placeholder}
