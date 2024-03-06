@@ -16,4 +16,5 @@ This branch is base on `main -> tt-lexical -> tt-lexical-editor` branches
 - `git push`
 - `git checkout tt-lexical-standalone-build-only`
 - `git rebase tt-lexical-editor`
+- `bump up version in package.json`
 - `git push`
