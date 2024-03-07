@@ -48,7 +48,6 @@ import ExcalidrawPlugin from './plugins/ExcalidrawPlugin';
 import FigmaPlugin from './plugins/FigmaPlugin';
 import FloatingLinkEditorPlugin from './plugins/FloatingLinkEditorPlugin';
 import FloatingTextFormatToolbarPlugin from './plugins/FloatingTextFormatToolbarPlugin';
-import ImagesPlugin from './plugins/ImagesPlugin';
 import InlineImagePlugin from './plugins/InlineImagePlugin';
 import KeywordsPlugin from './plugins/KeywordsPlugin';
 import {LayoutPlugin} from './plugins/LayoutPlugin/LayoutPlugin';
@@ -184,7 +183,6 @@ export default function Editor(): JSX.Element {
               hasCellBackgroundColor={tableCellBackgroundColor}
             />
             <TableCellResizer />
-            <ImagesPlugin />
             <InlineImagePlugin />
             <LinkPlugin />
             <PollPlugin />
