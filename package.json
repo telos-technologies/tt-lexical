@@ -1,6 +1,6 @@
 {
     "name": "tt-lexical-standalone",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Telos Media Default Text Editor which is based on the Lexical Playground Editor",
     "main": "packages/lexical-standalone-editor/dist/Editor.js",
     "scripts": {
