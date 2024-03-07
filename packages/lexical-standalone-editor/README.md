@@ -14,7 +14,7 @@ This branch is base on `main -> tt-lexical` branches
 - `git push`
 - `git checkout tt-lexical-editor`
 - `git rebase tt-lexical`
-- `yarn build`
+- `npm run build:standalone`
 - `git push`
 
 See `tt-lexical-standalone` for the build version for the editor
