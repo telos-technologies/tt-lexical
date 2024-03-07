@@ -51,7 +51,6 @@ import EmojisPlugin from 'lexical-playground/src/plugins/EmojisPlugin';
 import EquationsPlugin from 'lexical-playground/src/plugins/EquationsPlugin';
 import FloatingLinkEditorPlugin from 'lexical-playground/src/plugins/FloatingLinkEditorPlugin';
 import FloatingTextFormatToolbarPlugin from 'lexical-playground/src/plugins/FloatingTextFormatToolbarPlugin';
-import ImagesPlugin from 'lexical-playground/src/plugins/ImagesPlugin';
 import InlineImagePlugin from 'lexical-playground/src/plugins/InlineImagePlugin';
 import {LayoutPlugin} from 'lexical-playground/src/plugins/LayoutPlugin/LayoutPlugin';
 import LinkPlugin from 'lexical-playground/src/plugins/LinkPlugin';
@@ -180,7 +179,6 @@ function Editor({
               hasCellBackgroundColor={tableCellBackgroundColor}
             />
             <TableCellResizer />
-            <ImagesPlugin />
             <InlineImagePlugin />
             <LinkPlugin />
             <TwitterPlugin />

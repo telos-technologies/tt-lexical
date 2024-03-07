@@ -19033,7 +19033,7 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-d73fa268.js'); }));
+const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-ae8b3e7f.js'); }));
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19157,7 +19157,7 @@ function $isEquationNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-8abdbad7.js'); }));
+const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-c33da270.js'); }));
 function convertImageElement(domNode) {
   const img = domNode;
   if (img.src.startsWith('file:///')) {
@@ -19326,7 +19326,7 @@ function $isImageNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-b7d6bab3.js'); }));
+const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-909d8eb5.js'); }));
 function convertInlineImageElement(domNode) {
   if (domNode instanceof HTMLImageElement) {
     const {
@@ -19741,7 +19741,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-a94272ea.js'); }));
+const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-b850d9b3.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -36475,10 +36475,10 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-69555122.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-883256a2.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-0a943671.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-93464edd.js'); }).then(function (n) { return n.parserMarkdown; })
+  css: () => Promise.resolve().then(function () { return require('./parser-postcss-e118e18a.js'); }).then(function (n) { return n.parserPostcss; }),
+  html: () => Promise.resolve().then(function () { return require('./parser-html-ebf4cc66.js'); }).then(function (n) { return n.parserHtml; }),
+  js: () => Promise.resolve().then(function () { return require('./parser-babel-ca384359.js'); }).then(function (n) { return n.parserBabel; }),
+  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-e19d264c.js'); }).then(function (n) { return n.parserMarkdown; })
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -36487,7 +36487,7 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-  } = await Promise.resolve().then(function () { return require('./standalone-c0d2afec.js'); }).then(function (n) { return n.standalone; });
+  } = await Promise.resolve().then(function () { return require('./standalone-f56cf177.js'); }).then(function (n) { return n.standalone; });
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {
@@ -37221,7 +37221,6 @@ function TextInput({
  * LICENSE file in the root directory of this source tree.
  *
  */
-const getDOMSelection$1 = targetWindow => CAN_USE_DOM ? (targetWindow || window).getSelection() : null;
 const INSERT_IMAGE_COMMAND = lexical.createCommand('INSERT_IMAGE_COMMAND');
 function InsertImageUriDialogBody({
   onClick
@@ -37320,134 +37319,9 @@ function InsertImageDialog({
     onClick: onClick
   }));
 }
-function ImagesPlugin({
-  captionsEnabled
-}) {
-  const [editor] = LexicalComposerContext.useLexicalComposerContext();
-  React.useEffect(() => {
-    if (!editor.hasNodes([ImageNode])) {
-      throw new Error('ImagesPlugin: ImageNode not registered on editor');
-    }
-    return utils$1.mergeRegister(editor.registerCommand(INSERT_IMAGE_COMMAND, payload => {
-      const imageNode = $createImageNode(payload);
-      lexical.$insertNodes([imageNode]);
-      if (lexical.$isRootOrShadowRoot(imageNode.getParentOrThrow())) {
-        utils$1.$wrapNodeInElement(imageNode, lexical.$createParagraphNode).selectEnd();
-      }
-      return true;
-    }, lexical.COMMAND_PRIORITY_EDITOR), editor.registerCommand(lexical.DRAGSTART_COMMAND, event => {
-      return onDragStart$1(event);
-    }, lexical.COMMAND_PRIORITY_HIGH), editor.registerCommand(lexical.DRAGOVER_COMMAND, event => {
-      return onDragover$1(event);
-    }, lexical.COMMAND_PRIORITY_LOW), editor.registerCommand(lexical.DROP_COMMAND, event => {
-      return onDrop$1(event, editor);
-    }, lexical.COMMAND_PRIORITY_HIGH));
-  }, [captionsEnabled, editor]);
-  return null;
-}
 const TRANSPARENT_IMAGE$1 = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 const img$1 = document.createElement('img');
 img$1.src = TRANSPARENT_IMAGE$1;
-function onDragStart$1(event) {
-  const node = getImageNodeInSelection$1();
-  if (!node) {
-    return false;
-  }
-  const dataTransfer = event.dataTransfer;
-  if (!dataTransfer) {
-    return false;
-  }
-  dataTransfer.setData('text/plain', '_');
-  dataTransfer.setDragImage(img$1, 0, 0);
-  dataTransfer.setData('application/x-lexical-drag', JSON.stringify({
-    data: {
-      altText: node.__altText,
-      caption: node.__caption,
-      height: node.__height,
-      key: node.getKey(),
-      maxWidth: node.__maxWidth,
-      showCaption: node.__showCaption,
-      src: node.__src,
-      width: node.__width
-    },
-    type: 'image'
-  }));
-  return true;
-}
-function onDragover$1(event) {
-  const node = getImageNodeInSelection$1();
-  if (!node) {
-    return false;
-  }
-  if (!canDropImage$1(event)) {
-    event.preventDefault();
-  }
-  return true;
-}
-function onDrop$1(event, editor) {
-  const node = getImageNodeInSelection$1();
-  if (!node) {
-    return false;
-  }
-  const data = getDragImageData$1(event);
-  if (!data) {
-    return false;
-  }
-  event.preventDefault();
-  if (canDropImage$1(event)) {
-    const range = getDragSelection$1(event);
-    node.remove();
-    const rangeSelection = lexical.$createRangeSelection();
-    if (range !== null && range !== undefined) {
-      rangeSelection.applyDOMRange(range);
-    }
-    lexical.$setSelection(rangeSelection);
-    editor.dispatchCommand(INSERT_IMAGE_COMMAND, data);
-  }
-  return true;
-}
-function getImageNodeInSelection$1() {
-  const selection = lexical.$getSelection();
-  if (!lexical.$isNodeSelection(selection)) {
-    return null;
-  }
-  const nodes = selection.getNodes();
-  const node = nodes[0];
-  return $isImageNode(node) ? node : null;
-}
-function getDragImageData$1(event) {
-  const dragData = event.dataTransfer?.getData('application/x-lexical-drag');
-  if (!dragData) {
-    return null;
-  }
-  const {
-    type,
-    data
-  } = JSON.parse(dragData);
-  if (type !== 'image') {
-    return null;
-  }
-  return data;
-}
-function canDropImage$1(event) {
-  const target = event.target;
-  return !!(target && target instanceof HTMLElement && !target.closest('code, span.editor-image') && target.parentElement && target.parentElement.closest('div.ContentEditable__root'));
-}
-function getDragSelection$1(event) {
-  let range;
-  const target = event.target;
-  const targetWindow = target == null ? null : target.nodeType === 9 ? target.defaultView : target.ownerDocument.defaultView;
-  const domSelection = getDOMSelection$1(targetWindow);
-  if (document.caretRangeFromPoint) {
-    range = document.caretRangeFromPoint(event.clientX, event.clientY);
-  } else if (event.rangeParent && domSelection !== null) {
-    domSelection.collapse(event.rangeParent, event.rangeOffset || 0);
-    range = domSelection.getRangeAt(0);
-  } else {
-    throw Error(`Cannot get the selection when dragging`);
-  }
-  return range;
-}
 
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -43064,7 +42938,7 @@ function Editor({
   }), /*#__PURE__*/React.createElement(LexicalTablePlugin.TablePlugin, {
     hasCellMerge: tableCellMerge,
     hasCellBackgroundColor: tableCellBackgroundColor
-  }), /*#__PURE__*/React.createElement(TableCellResizerPlugin, null), /*#__PURE__*/React.createElement(ImagesPlugin, null), /*#__PURE__*/React.createElement(InlineImagePlugin, null), /*#__PURE__*/React.createElement(LinkPlugin, null), /*#__PURE__*/React.createElement(TwitterPlugin, null), /*#__PURE__*/React.createElement(YouTubePlugin, null), !isEditable && /*#__PURE__*/React.createElement(LexicalClickableLinkPlugin, null), /*#__PURE__*/React.createElement(LexicalHorizontalRulePlugin.HorizontalRulePlugin, null), /*#__PURE__*/React.createElement(EquationsPlugin, null), /*#__PURE__*/React.createElement(TabFocusPlugin, null), /*#__PURE__*/React.createElement(LexicalTabIndentationPlugin.TabIndentationPlugin, null), /*#__PURE__*/React.createElement(CollapsiblePlugin, null), /*#__PURE__*/React.createElement(PageBreakPlugin, null), /*#__PURE__*/React.createElement(LayoutPlugin, null), floatingAnchorElem && !isSmallWidthViewport && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(DraggableBlockPlugin, {
+  }), /*#__PURE__*/React.createElement(TableCellResizerPlugin, null), /*#__PURE__*/React.createElement(InlineImagePlugin, null), /*#__PURE__*/React.createElement(LinkPlugin, null), /*#__PURE__*/React.createElement(TwitterPlugin, null), /*#__PURE__*/React.createElement(YouTubePlugin, null), !isEditable && /*#__PURE__*/React.createElement(LexicalClickableLinkPlugin, null), /*#__PURE__*/React.createElement(LexicalHorizontalRulePlugin.HorizontalRulePlugin, null), /*#__PURE__*/React.createElement(EquationsPlugin, null), /*#__PURE__*/React.createElement(TabFocusPlugin, null), /*#__PURE__*/React.createElement(LexicalTabIndentationPlugin.TabIndentationPlugin, null), /*#__PURE__*/React.createElement(CollapsiblePlugin, null), /*#__PURE__*/React.createElement(PageBreakPlugin, null), /*#__PURE__*/React.createElement(LayoutPlugin, null), floatingAnchorElem && !isSmallWidthViewport && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(DraggableBlockPlugin, {
     anchorElem: floatingAnchorElem
   }), /*#__PURE__*/React.createElement(CodeActionMenuPlugin, {
     anchorElem: floatingAnchorElem

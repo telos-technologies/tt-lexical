@@ -663,6 +663,12 @@ async function buildAll() {
   for (const pkg of packages) {
     const {name, sourcePath, outputPath, packageName, modules} = pkg;
 
+    if (pkg.packageName === 'lexical-standalone-editor') {
+      await buildTSDeclarationFiles();
+      await moveTSDeclarationFilesIntoDist(packageName, outputPath);
+    }
+
+
     for (const module of modules) {
       const {sourceFileName, outputFileName} = module;
       let inputFile = path.resolve(path.join(`${sourcePath}${sourceFileName}`));
