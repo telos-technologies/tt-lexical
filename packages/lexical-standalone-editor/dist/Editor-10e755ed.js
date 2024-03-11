@@ -19033,7 +19033,7 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-ae8b3e7f.js'); }));
+const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-edb9f96d.js'); }));
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19157,7 +19157,7 @@ function $isEquationNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-c33da270.js'); }));
+const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-70048e98.js'); }));
 function convertImageElement(domNode) {
   const img = domNode;
   if (img.src.startsWith('file:///')) {
@@ -19326,7 +19326,7 @@ function $isImageNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-909d8eb5.js'); }));
+const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-b3529e65.js'); }));
 function convertInlineImageElement(domNode) {
   if (domNode instanceof HTMLImageElement) {
     const {
@@ -19741,7 +19741,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-b850d9b3.js'); }));
+const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-a79d4549.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -36475,10 +36475,10 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-e118e18a.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-ebf4cc66.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-ca384359.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-e19d264c.js'); }).then(function (n) { return n.parserMarkdown; })
+  css: () => Promise.resolve().then(function () { return require('./parser-postcss-2bba5e9a.js'); }).then(function (n) { return n.parserPostcss; }),
+  html: () => Promise.resolve().then(function () { return require('./parser-html-f9faebc5.js'); }).then(function (n) { return n.parserHtml; }),
+  js: () => Promise.resolve().then(function () { return require('./parser-babel-78a1a09d.js'); }).then(function (n) { return n.parserBabel; }),
+  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-43fca5f3.js'); }).then(function (n) { return n.parserMarkdown; })
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -36487,7 +36487,7 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-  } = await Promise.resolve().then(function () { return require('./standalone-f56cf177.js'); }).then(function (n) { return n.standalone; });
+  } = await Promise.resolve().then(function () { return require('./standalone-ecf02276.js'); }).then(function (n) { return n.standalone; });
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {
@@ -37947,7 +37947,9 @@ function getBaseOptions(editor, showModal) {
     onSelect: () => editor.dispatchCommand(lexical.FORMAT_ELEMENT_COMMAND, alignment)
   }))];
 }
-function ComponentPickerMenuPlugin() {
+function ComponentPickerMenuPlugin({
+  customComponentPickerOptions = []
+}) {
   const [editor] = LexicalComposerContext.useLexicalComposerContext();
   const [modal, showModal] = useModal();
   const [queryString, setQueryString] = React.useState(null);
@@ -37960,7 +37962,7 @@ function ComponentPickerMenuPlugin() {
       return baseOptions;
     }
     const regex = new RegExp(queryString, 'i');
-    return [...getDynamicOptions(editor, queryString), ...baseOptions.filter(option => regex.test(option.title) || option.keywords.some(keyword => regex.test(keyword)))];
+    return [...customComponentPickerOptions, ...getDynamicOptions(editor, queryString), ...baseOptions.filter(option => regex.test(option.title) || option.keywords.some(keyword => regex.test(keyword)))];
   }, [editor, queryString, showModal]);
   const onSelectOption = React.useCallback((selectedOption, nodeToRemove, closeMenu, matchingString) => {
     editor.update(() => {
@@ -42887,7 +42889,8 @@ function Editor({
   tableCellBackgroundColor,
   showActions,
   showToolbar = true,
-  articleCssClass
+  articleCssClass,
+  customComponentPickerOptions
 }) {
   const {
     historyState
@@ -42922,7 +42925,9 @@ function Editor({
     className: `editor-container ${showTreeView ? 'tree-view' : ''} ${!isRichText ? 'plain-text' : ''}`
   }, isMaxLength && /*#__PURE__*/React.createElement(MaxLengthPlugin, {
     maxLength: 30
-  }), /*#__PURE__*/React.createElement(DragDropPaste, null), /*#__PURE__*/React.createElement(LexicalAutoFocusPlugin.AutoFocusPlugin, null), /*#__PURE__*/React.createElement(LexicalClearEditorPlugin.ClearEditorPlugin, null), /*#__PURE__*/React.createElement(ComponentPickerMenuPlugin, null), /*#__PURE__*/React.createElement(EmojiPickerPlugin, null), /*#__PURE__*/React.createElement(AutoEmbedPlugin, null), /*#__PURE__*/React.createElement(EmojisPlugin, null), /*#__PURE__*/React.createElement(SpeechToTextPlugin$1, null), /*#__PURE__*/React.createElement(LexicalAutoLinkPlugin, null), isRichText ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LexicalHistoryPlugin.HistoryPlugin, {
+  }), /*#__PURE__*/React.createElement(DragDropPaste, null), /*#__PURE__*/React.createElement(LexicalAutoFocusPlugin.AutoFocusPlugin, null), /*#__PURE__*/React.createElement(LexicalClearEditorPlugin.ClearEditorPlugin, null), /*#__PURE__*/React.createElement(ComponentPickerMenuPlugin, {
+    customComponentPickerOptions: customComponentPickerOptions
+  }), /*#__PURE__*/React.createElement(EmojiPickerPlugin, null), /*#__PURE__*/React.createElement(AutoEmbedPlugin, null), /*#__PURE__*/React.createElement(EmojisPlugin, null), /*#__PURE__*/React.createElement(SpeechToTextPlugin$1, null), /*#__PURE__*/React.createElement(LexicalAutoLinkPlugin, null), isRichText ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LexicalHistoryPlugin.HistoryPlugin, {
     externalHistoryState: historyState
   }), /*#__PURE__*/React.createElement(LexicalRichTextPlugin.RichTextPlugin, {
     contentEditable: /*#__PURE__*/React.createElement("div", {

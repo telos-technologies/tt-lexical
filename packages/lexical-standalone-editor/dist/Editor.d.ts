@@ -10,11 +10,13 @@ import 'lexical-playground/src/index.css';
 import { InitialEditorStateType } from '@lexical/react/LexicalComposer';
 import { KlassConstructor, LexicalNode } from 'lexical/src';
 import { Settings } from 'lexical-playground/src/appSettings';
+import { ComponentPickerOption } from 'lexical-playground/src/plugins/ComponentPickerPlugin';
 type NormalizedEditorProps = Omit<Settings, 'measureTypingPerf'>;
 type EditorProps = NormalizedEditorProps & {
     showActions?: boolean;
     showToolbar?: boolean;
     articleCssClass?: string;
+    customComponentPickerOptions?: ComponentPickerOption[];
 };
 type LexicalEditorProps = EditorProps & {
     isDevPlayground?: boolean;
