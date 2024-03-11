@@ -41,7 +41,7 @@ import AutoLinkPlugin from 'lexical-playground/src/plugins/AutoLinkPlugin';
 import CodeActionMenuPlugin from 'lexical-playground/src/plugins/CodeActionMenuPlugin';
 import CodeHighlightPlugin from 'lexical-playground/src/plugins/CodeHighlightPlugin';
 import CollapsiblePlugin from 'lexical-playground/src/plugins/CollapsiblePlugin';
-import ComponentPickerPlugin from 'lexical-playground/src/plugins/ComponentPickerPlugin';
+import ComponentPickerPlugin, { ComponentPickerOption } from 'lexical-playground/src/plugins/ComponentPickerPlugin';
 import ContextMenuPlugin from 'lexical-playground/src/plugins/ContextMenuPlugin';
 import DocsPlugin from 'lexical-playground/src/plugins/DocsPlugin';
 import DragDropPaste from 'lexical-playground/src/plugins/DragDropPastePlugin';
@@ -84,6 +84,7 @@ type EditorProps = NormalizedEditorProps & {
   showActions?: boolean;
   showToolbar?: boolean;
   articleCssClass?: string;
+  customComponentPickerOptions?: ComponentPickerOption[];
 };
 
 function Editor({
@@ -100,6 +101,7 @@ function Editor({
   showActions,
   showToolbar = true,
   articleCssClass,
+  customComponentPickerOptions
 }: EditorProps): JSX.Element {
   const {historyState} = useSharedHistoryContext();
 
@@ -149,7 +151,7 @@ function Editor({
         <DragDropPaste />
         <AutoFocusPlugin />
         <ClearEditorPlugin />
-        <ComponentPickerPlugin />
+        <ComponentPickerPlugin customComponentPickerOptions={customComponentPickerOptions} />
         <EmojiPickerPlugin />
         <AutoEmbedPlugin />
         <EmojisPlugin />

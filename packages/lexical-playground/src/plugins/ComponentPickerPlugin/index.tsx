@@ -44,7 +44,7 @@ import InsertLayoutDialog from '../LayoutPlugin/InsertLayoutDialog';
 import {INSERT_PAGE_BREAK} from '../PageBreakPlugin';
 import {InsertTableDialog} from '../TablePlugin';
 
-class ComponentPickerOption extends MenuOption {
+export class ComponentPickerOption extends MenuOption {
   // What shows up in the editor
   title: string;
   // Icon for display
@@ -287,7 +287,11 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
   ];
 }
 
-export default function ComponentPickerMenuPlugin(): JSX.Element {
+export default function ComponentPickerMenuPlugin({
+  customComponentPickerOptions = [],
+}: {
+  customComponentPickerOptions?: ComponentPickerOption[];
+}): JSX.Element {
   const [editor] = useLexicalComposerContext();
   const [modal, showModal] = useModal();
   const [queryString, setQueryString] = useState<string | null>(null);
@@ -306,6 +310,7 @@ export default function ComponentPickerMenuPlugin(): JSX.Element {
     const regex = new RegExp(queryString, 'i');
 
     return [
+      ...customComponentPickerOptions,
       ...getDynamicOptions(editor, queryString),
       ...baseOptions.filter(
         (option) =>
