@@ -41,7 +41,7 @@ import AutoLinkPlugin from 'lexical-playground/src/plugins/AutoLinkPlugin';
 import CodeActionMenuPlugin from 'lexical-playground/src/plugins/CodeActionMenuPlugin';
 import CodeHighlightPlugin from 'lexical-playground/src/plugins/CodeHighlightPlugin';
 import CollapsiblePlugin from 'lexical-playground/src/plugins/CollapsiblePlugin';
-import ComponentPickerPlugin, { ComponentPickerOption, GetCustomBaseOptions } from 'lexical-playground/src/plugins/ComponentPickerPlugin';
+import ComponentPickerPlugin, { ComponentPickerOption, getBaseOptions,GetCustomBaseOptions } from 'lexical-playground/src/plugins/ComponentPickerPlugin';
 import ContextMenuPlugin from 'lexical-playground/src/plugins/ContextMenuPlugin';
 import DocsPlugin from 'lexical-playground/src/plugins/DocsPlugin';
 import DragDropPaste from 'lexical-playground/src/plugins/DragDropPastePlugin';
@@ -79,6 +79,8 @@ import {useEffect, useState} from 'react';
 import {CAN_USE_DOM} from 'shared/canUseDOM';
 
 export class CustomComponentPickerOption extends ComponentPickerOption {}
+
+export type GetBaseOptions = typeof getBaseOptions
 
 type NormalizedEditorProps = Omit<Settings, 'measureTypingPerf'>;
 

@@ -10,9 +10,10 @@ import 'lexical-playground/src/index.css';
 import { InitialEditorStateType } from '@lexical/react/LexicalComposer';
 import { KlassConstructor, LexicalNode } from 'lexical/src';
 import { Settings } from 'lexical-playground/src/appSettings';
-import { ComponentPickerOption, GetCustomBaseOptions } from 'lexical-playground/src/plugins/ComponentPickerPlugin';
+import { ComponentPickerOption, getBaseOptions, GetCustomBaseOptions } from 'lexical-playground/src/plugins/ComponentPickerPlugin';
 export declare class CustomComponentPickerOption extends ComponentPickerOption {
 }
+export type GetBaseOptions = typeof getBaseOptions;
 type NormalizedEditorProps = Omit<Settings, 'measureTypingPerf'>;
 type EditorProps = NormalizedEditorProps & {
     showActions?: boolean;
