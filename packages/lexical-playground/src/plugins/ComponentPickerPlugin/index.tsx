@@ -39,7 +39,6 @@ import useModal from '../../hooks/useModal';
 import {EmbedConfigs} from '../AutoEmbedPlugin';
 import {INSERT_COLLAPSIBLE_COMMAND} from '../CollapsiblePlugin';
 import {InsertEquationDialog} from '../EquationsPlugin';
-import {InsertImageDialog} from '../ImagesPlugin';
 import InsertLayoutDialog from '../LayoutPlugin/InsertLayoutDialog';
 import {INSERT_PAGE_BREAK} from '../PageBreakPlugin';
 import {InsertTableDialog} from '../TablePlugin';
@@ -141,7 +140,7 @@ function getDynamicOptions(editor: LexicalEditor, queryString: string) {
 
 type ShowModal = ReturnType<typeof useModal>[1];
 
-function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
+export function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
   return [
     new ComponentPickerOption('Paragraph', {
       icon: <i className="icon paragraph" />,
@@ -253,14 +252,6 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
           <InsertEquationDialog activeEditor={editor} onClose={onClose} />
         )),
     }),
-    new ComponentPickerOption('Image', {
-      icon: <i className="icon image" />,
-      keywords: ['image', 'photo', 'picture', 'file'],
-      onSelect: () =>
-        showModal('Insert Image', (onClose) => (
-          <InsertImageDialog activeEditor={editor} onClose={onClose} />
-        )),
-    }),
     new ComponentPickerOption('Collapsible', {
       icon: <i className="icon caret-right" />,
       keywords: ['collapse', 'collapsible', 'toggle'],
@@ -287,10 +278,12 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
   ];
 }
 
+export type GetCustomBaseOptions = typeof getBaseOptions;
+
 export default function ComponentPickerMenuPlugin({
-  customComponentPickerOptions = [],
+  getCustomBaseOptions,
 }: {
-  customComponentPickerOptions?: ComponentPickerOption[];
+  getCustomBaseOptions?: GetCustomBaseOptions;
 }): JSX.Element {
   const [editor] = useLexicalComposerContext();
   const [modal, showModal] = useModal();
@@ -303,6 +296,12 @@ export default function ComponentPickerMenuPlugin({
   const options = useMemo(() => {
     const baseOptions = getBaseOptions(editor, showModal);
 
+    let customComponentPickerOptions: ComponentPickerOption[] = [];
+
+    if (getCustomBaseOptions) {
+      customComponentPickerOptions = getCustomBaseOptions(editor, showModal);
+    }
+
     if (!queryString) {
       return baseOptions;
     }
@@ -310,13 +309,13 @@ export default function ComponentPickerMenuPlugin({
     const regex = new RegExp(queryString, 'i');
 
     return [
-      ...customComponentPickerOptions,
       ...getDynamicOptions(editor, queryString),
       ...baseOptions.filter(
         (option) =>
           regex.test(option.title) ||
           option.keywords.some((keyword) => regex.test(keyword)),
       ),
+      ...customComponentPickerOptions,
     ];
   }, [editor, queryString, showModal]);
 

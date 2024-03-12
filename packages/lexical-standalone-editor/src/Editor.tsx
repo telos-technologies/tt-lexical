@@ -41,7 +41,7 @@ import AutoLinkPlugin from 'lexical-playground/src/plugins/AutoLinkPlugin';
 import CodeActionMenuPlugin from 'lexical-playground/src/plugins/CodeActionMenuPlugin';
 import CodeHighlightPlugin from 'lexical-playground/src/plugins/CodeHighlightPlugin';
 import CollapsiblePlugin from 'lexical-playground/src/plugins/CollapsiblePlugin';
-import ComponentPickerPlugin, { ComponentPickerOption } from 'lexical-playground/src/plugins/ComponentPickerPlugin';
+import ComponentPickerPlugin, { ComponentPickerOption, GetCustomBaseOptions } from 'lexical-playground/src/plugins/ComponentPickerPlugin';
 import ContextMenuPlugin from 'lexical-playground/src/plugins/ContextMenuPlugin';
 import DocsPlugin from 'lexical-playground/src/plugins/DocsPlugin';
 import DragDropPaste from 'lexical-playground/src/plugins/DragDropPastePlugin';
@@ -78,13 +78,15 @@ import * as React from 'react';
 import {useEffect, useState} from 'react';
 import {CAN_USE_DOM} from 'shared/canUseDOM';
 
+export class CustomComponentPickerOption extends ComponentPickerOption {}
+
 type NormalizedEditorProps = Omit<Settings, 'measureTypingPerf'>;
 
 type EditorProps = NormalizedEditorProps & {
   showActions?: boolean;
   showToolbar?: boolean;
   articleCssClass?: string;
-  customComponentPickerOptions?: ComponentPickerOption[];
+  getCustomBaseOptions?: GetCustomBaseOptions;
 };
 
 function Editor({
@@ -101,7 +103,7 @@ function Editor({
   showActions,
   showToolbar = true,
   articleCssClass,
-  customComponentPickerOptions
+  getCustomBaseOptions
 }: EditorProps): JSX.Element {
   const {historyState} = useSharedHistoryContext();
 
@@ -151,7 +153,7 @@ function Editor({
         <DragDropPaste />
         <AutoFocusPlugin />
         <ClearEditorPlugin />
-        <ComponentPickerPlugin customComponentPickerOptions={customComponentPickerOptions} />
+        <ComponentPickerPlugin getCustomBaseOptions={getCustomBaseOptions} />
         <EmojiPickerPlugin />
         <AutoEmbedPlugin />
         <EmojisPlugin />

@@ -21,7 +21,7 @@ require('@lexical/react/LexicalRichTextPlugin');
 require('@lexical/react/LexicalTabIndentationPlugin');
 require('@lexical/react/LexicalTablePlugin');
 require('@lexical/react/useLexicalEditable');
-var Editor = require('./Editor-10e755ed.js');
+var Editor = require('./Editor-e9c304e8.js');
 require('react');
 require('@lexical/code');
 require('@lexical/link');
@@ -55,4 +55,5 @@ require('@lexical/react/LexicalContentEditable');
 
 
 
+exports.CustomComponentPickerOption = Editor.CustomComponentPickerOption;
 exports.LexicalEditor = Editor.LexicalEditor;

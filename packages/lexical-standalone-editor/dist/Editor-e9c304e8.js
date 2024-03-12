@@ -19033,7 +19033,7 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-edb9f96d.js'); }));
+const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-bdad4d9d.js'); }));
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19157,7 +19157,7 @@ function $isEquationNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-70048e98.js'); }));
+const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-1fe790e8.js'); }));
 function convertImageElement(domNode) {
   const img = domNode;
   if (img.src.startsWith('file:///')) {
@@ -19326,7 +19326,7 @@ function $isImageNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-b3529e65.js'); }));
+const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-750c8694.js'); }));
 function convertInlineImageElement(domNode) {
   if (domNode instanceof HTMLImageElement) {
     const {
@@ -19741,7 +19741,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-a79d4549.js'); }));
+const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-985e4b12.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -36475,10 +36475,10 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-2bba5e9a.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-f9faebc5.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-78a1a09d.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-43fca5f3.js'); }).then(function (n) { return n.parserMarkdown; })
+  css: () => Promise.resolve().then(function () { return require('./parser-postcss-9d64301e.js'); }).then(function (n) { return n.parserPostcss; }),
+  html: () => Promise.resolve().then(function () { return require('./parser-html-e91ab994.js'); }).then(function (n) { return n.parserHtml; }),
+  js: () => Promise.resolve().then(function () { return require('./parser-babel-51acfc43.js'); }).then(function (n) { return n.parserBabel; }),
+  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-f37dc32e.js'); }).then(function (n) { return n.parserMarkdown; })
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -36487,7 +36487,7 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-  } = await Promise.resolve().then(function () { return require('./standalone-ecf02276.js'); }).then(function (n) { return n.standalone; });
+  } = await Promise.resolve().then(function () { return require('./standalone-e29d95b9.js'); }).then(function (n) { return n.standalone; });
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {
@@ -37154,182 +37154,6 @@ function EquationsPlugin() {
  * LICENSE file in the root directory of this source tree.
  *
  */
-
-const CAN_USE_DOM = typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined';
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-function FileInput({
-  accept,
-  label,
-  onChange,
-  'data-test-id': dataTestId
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "Input__wrapper"
-  }, /*#__PURE__*/React.createElement("label", {
-    className: "Input__label"
-  }, label), /*#__PURE__*/React.createElement("input", {
-    type: "file",
-    accept: accept,
-    className: "Input__input",
-    onChange: e => onChange(e.target.files),
-    "data-test-id": dataTestId
-  }));
-}
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-function TextInput({
-  label,
-  value,
-  onChange,
-  placeholder = '',
-  'data-test-id': dataTestId,
-  type = 'text'
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "Input__wrapper"
-  }, /*#__PURE__*/React.createElement("label", {
-    className: "Input__label"
-  }, label), /*#__PURE__*/React.createElement("input", {
-    type: type,
-    className: "Input__input",
-    placeholder: placeholder,
-    value: value,
-    onChange: e => {
-      onChange(e.target.value);
-    },
-    "data-test-id": dataTestId
-  }));
-}
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-const INSERT_IMAGE_COMMAND = lexical.createCommand('INSERT_IMAGE_COMMAND');
-function InsertImageUriDialogBody({
-  onClick
-}) {
-  const [src, setSrc] = React.useState('');
-  const [altText, setAltText] = React.useState('');
-  const isDisabled = src === '';
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(TextInput, {
-    label: "Image URL",
-    placeholder: "i.e. https://source.unsplash.com/random",
-    onChange: setSrc,
-    value: src,
-    "data-test-id": "image-modal-url-input"
-  }), /*#__PURE__*/React.createElement(TextInput, {
-    label: "Alt Text",
-    placeholder: "Random unsplash image",
-    onChange: setAltText,
-    value: altText,
-    "data-test-id": "image-modal-alt-text-input"
-  }), /*#__PURE__*/React.createElement(DialogActions, null, /*#__PURE__*/React.createElement(Button, {
-    "data-test-id": "image-modal-confirm-btn",
-    disabled: isDisabled,
-    onClick: () => onClick({
-      altText,
-      src
-    })
-  }, "Confirm")));
-}
-function InsertImageUploadedDialogBody({
-  onClick
-}) {
-  const [src, setSrc] = React.useState('');
-  const [altText, setAltText] = React.useState('');
-  const isDisabled = src === '';
-  const loadImage = files => {
-    const reader = new FileReader();
-    reader.onload = function () {
-      if (typeof reader.result === 'string') {
-        setSrc(reader.result);
-      }
-      return '';
-    };
-    if (files !== null) {
-      reader.readAsDataURL(files[0]);
-    }
-  };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FileInput, {
-    label: "Image Upload",
-    onChange: loadImage,
-    accept: "image/*",
-    "data-test-id": "image-modal-file-upload"
-  }), /*#__PURE__*/React.createElement(TextInput, {
-    label: "Alt Text",
-    placeholder: "Descriptive alternative text",
-    onChange: setAltText,
-    value: altText,
-    "data-test-id": "image-modal-alt-text-input"
-  }), /*#__PURE__*/React.createElement(DialogActions, null, /*#__PURE__*/React.createElement(Button, {
-    "data-test-id": "image-modal-file-upload-btn",
-    disabled: isDisabled,
-    onClick: () => onClick({
-      altText,
-      src
-    })
-  }, "Confirm")));
-}
-function InsertImageDialog({
-  activeEditor,
-  onClose
-}) {
-  const [mode, setMode] = React.useState(null);
-  const hasModifier = React.useRef(false);
-  React.useEffect(() => {
-    hasModifier.current = false;
-    const handler = e => {
-      hasModifier.current = e.altKey;
-    };
-    document.addEventListener('keydown', handler);
-    return () => {
-      document.removeEventListener('keydown', handler);
-    };
-  }, [activeEditor]);
-  const onClick = payload => {
-    activeEditor.dispatchCommand(INSERT_IMAGE_COMMAND, payload);
-    onClose();
-  };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, !mode && /*#__PURE__*/React.createElement(DialogButtonsList, null, /*#__PURE__*/React.createElement(Button, {
-    "data-test-id": "image-modal-option-url",
-    onClick: () => setMode('url')
-  }, "URL"), /*#__PURE__*/React.createElement(Button, {
-    "data-test-id": "image-modal-option-file",
-    onClick: () => setMode('file')
-  }, "File")), mode === 'url' && /*#__PURE__*/React.createElement(InsertImageUriDialogBody, {
-    onClick: onClick
-  }), mode === 'file' && /*#__PURE__*/React.createElement(InsertImageUploadedDialogBody, {
-    onClick: onClick
-  }));
-}
-const TRANSPARENT_IMAGE$1 = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-const img$1 = document.createElement('img');
-img$1.src = TRANSPARENT_IMAGE$1;
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 const DropDownContext = /*#__PURE__*/React.createContext(null);
 const dropDownPadding = 4;
 function DropDownItem({
@@ -37663,6 +37487,37 @@ function PageBreakPlugin() {
  * LICENSE file in the root directory of this source tree.
  *
  */
+function TextInput({
+  label,
+  value,
+  onChange,
+  placeholder = '',
+  'data-test-id': dataTestId,
+  type = 'text'
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "Input__wrapper"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "Input__label"
+  }, label), /*#__PURE__*/React.createElement("input", {
+    type: type,
+    className: "Input__input",
+    placeholder: placeholder,
+    value: value,
+    onChange: e => {
+      onChange(e.target.value);
+    },
+    "data-test-id": dataTestId
+  }));
+}
+
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
 lexical.createCommand('INSERT_NEW_TABLE_COMMAND');
 const CellContext = /*#__PURE__*/React.createContext({
   cellEditorConfig: null,
@@ -37915,15 +37770,6 @@ function getBaseOptions(editor, showModal) {
       activeEditor: editor,
       onClose: onClose
     }))
-  }), new ComponentPickerOption('Image', {
-    icon: /*#__PURE__*/React.createElement("i", {
-      className: "icon image"
-    }),
-    keywords: ['image', 'photo', 'picture', 'file'],
-    onSelect: () => showModal('Insert Image', onClose => /*#__PURE__*/React.createElement(InsertImageDialog, {
-      activeEditor: editor,
-      onClose: onClose
-    }))
   }), new ComponentPickerOption('Collapsible', {
     icon: /*#__PURE__*/React.createElement("i", {
       className: "icon caret-right"
@@ -37948,7 +37794,7 @@ function getBaseOptions(editor, showModal) {
   }))];
 }
 function ComponentPickerMenuPlugin({
-  customComponentPickerOptions = []
+  getCustomBaseOptions
 }) {
   const [editor] = LexicalComposerContext.useLexicalComposerContext();
   const [modal, showModal] = useModal();
@@ -37958,11 +37804,15 @@ function ComponentPickerMenuPlugin({
   });
   const options = React.useMemo(() => {
     const baseOptions = getBaseOptions(editor, showModal);
+    let customComponentPickerOptions = [];
+    if (getCustomBaseOptions) {
+      customComponentPickerOptions = getCustomBaseOptions(editor, showModal);
+    }
     if (!queryString) {
       return baseOptions;
     }
     const regex = new RegExp(queryString, 'i');
-    return [...customComponentPickerOptions, ...getDynamicOptions(editor, queryString), ...baseOptions.filter(option => regex.test(option.title) || option.keywords.some(keyword => regex.test(keyword)))];
+    return [...getDynamicOptions(editor, queryString), ...baseOptions.filter(option => regex.test(option.title) || option.keywords.some(keyword => regex.test(keyword))), ...customComponentPickerOptions];
   }, [editor, queryString, showModal]);
   const onSelectOption = React.useCallback((selectedOption, nodeToRemove, closeMenu, matchingString) => {
     editor.update(() => {
@@ -38175,6 +38025,151 @@ function DocsPlugin() {
     title: "Lexical Docs"
   }));
 }
+
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+const CAN_USE_DOM = typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined';
+
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+function FileInput({
+  accept,
+  label,
+  onChange,
+  'data-test-id': dataTestId
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "Input__wrapper"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "Input__label"
+  }, label), /*#__PURE__*/React.createElement("input", {
+    type: "file",
+    accept: accept,
+    className: "Input__input",
+    onChange: e => onChange(e.target.files),
+    "data-test-id": dataTestId
+  }));
+}
+
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+const INSERT_IMAGE_COMMAND = lexical.createCommand('INSERT_IMAGE_COMMAND');
+function InsertImageUriDialogBody({
+  onClick
+}) {
+  const [src, setSrc] = React.useState('');
+  const [altText, setAltText] = React.useState('');
+  const isDisabled = src === '';
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(TextInput, {
+    label: "Image URL",
+    placeholder: "i.e. https://source.unsplash.com/random",
+    onChange: setSrc,
+    value: src,
+    "data-test-id": "image-modal-url-input"
+  }), /*#__PURE__*/React.createElement(TextInput, {
+    label: "Alt Text",
+    placeholder: "Random unsplash image",
+    onChange: setAltText,
+    value: altText,
+    "data-test-id": "image-modal-alt-text-input"
+  }), /*#__PURE__*/React.createElement(DialogActions, null, /*#__PURE__*/React.createElement(Button, {
+    "data-test-id": "image-modal-confirm-btn",
+    disabled: isDisabled,
+    onClick: () => onClick({
+      altText,
+      src
+    })
+  }, "Confirm")));
+}
+function InsertImageUploadedDialogBody({
+  onClick
+}) {
+  const [src, setSrc] = React.useState('');
+  const [altText, setAltText] = React.useState('');
+  const isDisabled = src === '';
+  const loadImage = files => {
+    const reader = new FileReader();
+    reader.onload = function () {
+      if (typeof reader.result === 'string') {
+        setSrc(reader.result);
+      }
+      return '';
+    };
+    if (files !== null) {
+      reader.readAsDataURL(files[0]);
+    }
+  };
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FileInput, {
+    label: "Image Upload",
+    onChange: loadImage,
+    accept: "image/*",
+    "data-test-id": "image-modal-file-upload"
+  }), /*#__PURE__*/React.createElement(TextInput, {
+    label: "Alt Text",
+    placeholder: "Descriptive alternative text",
+    onChange: setAltText,
+    value: altText,
+    "data-test-id": "image-modal-alt-text-input"
+  }), /*#__PURE__*/React.createElement(DialogActions, null, /*#__PURE__*/React.createElement(Button, {
+    "data-test-id": "image-modal-file-upload-btn",
+    disabled: isDisabled,
+    onClick: () => onClick({
+      altText,
+      src
+    })
+  }, "Confirm")));
+}
+function InsertImageDialog({
+  activeEditor,
+  onClose
+}) {
+  const [mode, setMode] = React.useState(null);
+  const hasModifier = React.useRef(false);
+  React.useEffect(() => {
+    hasModifier.current = false;
+    const handler = e => {
+      hasModifier.current = e.altKey;
+    };
+    document.addEventListener('keydown', handler);
+    return () => {
+      document.removeEventListener('keydown', handler);
+    };
+  }, [activeEditor]);
+  const onClick = payload => {
+    activeEditor.dispatchCommand(INSERT_IMAGE_COMMAND, payload);
+    onClose();
+  };
+  return /*#__PURE__*/React.createElement(React.Fragment, null, !mode && /*#__PURE__*/React.createElement(DialogButtonsList, null, /*#__PURE__*/React.createElement(Button, {
+    "data-test-id": "image-modal-option-url",
+    onClick: () => setMode('url')
+  }, "URL"), /*#__PURE__*/React.createElement(Button, {
+    "data-test-id": "image-modal-option-file",
+    onClick: () => setMode('file')
+  }, "File")), mode === 'url' && /*#__PURE__*/React.createElement(InsertImageUriDialogBody, {
+    onClick: onClick
+  }), mode === 'file' && /*#__PURE__*/React.createElement(InsertImageUploadedDialogBody, {
+    onClick: onClick
+  }));
+}
+const TRANSPARENT_IMAGE$1 = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+const img$1 = document.createElement('img');
+img$1.src = TRANSPARENT_IMAGE$1;
 
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -42876,6 +42871,7 @@ function Placeholder({
  * LICENSE file in the root directory of this source tree.
  *
  */
+class CustomComponentPickerOption extends ComponentPickerOption {}
 function Editor({
   isAutocomplete,
   isMaxLength,
@@ -42890,7 +42886,7 @@ function Editor({
   showActions,
   showToolbar = true,
   articleCssClass,
-  customComponentPickerOptions
+  getCustomBaseOptions
 }) {
   const {
     historyState
@@ -42926,7 +42922,7 @@ function Editor({
   }, isMaxLength && /*#__PURE__*/React.createElement(MaxLengthPlugin, {
     maxLength: 30
   }), /*#__PURE__*/React.createElement(DragDropPaste, null), /*#__PURE__*/React.createElement(LexicalAutoFocusPlugin.AutoFocusPlugin, null), /*#__PURE__*/React.createElement(LexicalClearEditorPlugin.ClearEditorPlugin, null), /*#__PURE__*/React.createElement(ComponentPickerMenuPlugin, {
-    customComponentPickerOptions: customComponentPickerOptions
+    getCustomBaseOptions: getCustomBaseOptions
   }), /*#__PURE__*/React.createElement(EmojiPickerPlugin, null), /*#__PURE__*/React.createElement(AutoEmbedPlugin, null), /*#__PURE__*/React.createElement(EmojisPlugin, null), /*#__PURE__*/React.createElement(SpeechToTextPlugin$1, null), /*#__PURE__*/React.createElement(LexicalAutoLinkPlugin, null), isRichText ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LexicalHistoryPlugin.HistoryPlugin, {
     externalHistoryState: historyState
   }), /*#__PURE__*/React.createElement(LexicalRichTextPlugin.RichTextPlugin, {
@@ -42999,6 +42995,7 @@ exports.$isImageNode = $isImageNode;
 exports.$isInlineImageNode = $isInlineImageNode;
 exports.$isStickyNode = $isStickyNode;
 exports.Button = Button;
+exports.CustomComponentPickerOption = CustomComponentPickerOption;
 exports.DialogActions = DialogActions;
 exports.EmojisPlugin = EmojisPlugin;
 exports.ErrorBoundary = ErrorBoundary;
