@@ -16,7 +16,7 @@ var useLexicalNodeSelection = require('@lexical/react/useLexicalNodeSelection');
 var utils = require('@lexical/utils');
 var lexical = require('lexical');
 var React = require('react');
-var Editor = require('./Editor-d689edef.js');
+var Editor = require('./Editor-25c46a2d.js');
 require('@lexical/react/LexicalCharacterLimitPlugin');
 require('@lexical/react/LexicalCheckListPlugin');
 require('@lexical/react/LexicalClearEditorPlugin');
@@ -425,9 +425,7 @@ function ImageComponent({
   const setShowCaption = () => {
     editor.update(() => {
       const node = lexical.$getNodeByKey(nodeKey);
-      if (Editor.$isImageNode(node)) {
-        node.setShowCaption(true);
-      }
+      node.setShowCaption(true);
     });
   };
   const onResizeEnd = (nextWidth, nextHeight) => {

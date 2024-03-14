@@ -48,7 +48,7 @@ import LinkPlugin from '../plugins/LinkPlugin';
 import ContentEditable from '../ui/ContentEditable';
 import ImageResizer from '../ui/ImageResizer';
 import Placeholder from '../ui/Placeholder';
-import {$isImageNode} from './ImageNode';
+import {$isImageNode, ImageNode} from './ImageNode';
 
 const imageCache = new Set();
 
@@ -324,9 +324,7 @@ export default function ImageComponent({
   const setShowCaption = () => {
     editor.update(() => {
       const node = $getNodeByKey(nodeKey);
-      if ($isImageNode(node)) {
-        node.setShowCaption(true);
-      }
+      (node as ImageNode).setShowCaption(true);
     });
   };
 
