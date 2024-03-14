@@ -19033,7 +19033,7 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-6a1cbb72.js'); }));
+const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-957b92d8.js'); }));
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19157,176 +19157,7 @@ function $isEquationNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-eee8417c.js'); }));
-function convertImageElement(domNode) {
-  const img = domNode;
-  if (img.src.startsWith('file:///')) {
-    return null;
-  }
-  const {
-    alt: altText,
-    src,
-    width,
-    height
-  } = img;
-  const node = $createImageNode({
-    altText,
-    height,
-    src,
-    width
-  });
-  return {
-    node
-  };
-}
-class ImageNode extends lexical.DecoratorNode {
-  // Captions cannot yet be used within editor cells
-
-  static getType() {
-    return 'image';
-  }
-  static clone(node) {
-    return new ImageNode(node.__src, node.__altText, node.__maxWidth, node.__width, node.__height, node.__showCaption, node.__caption, node.__captionsEnabled, node.__key);
-  }
-  static importJSON(serializedNode) {
-    const {
-      altText,
-      height,
-      width,
-      maxWidth,
-      caption,
-      src,
-      showCaption
-    } = serializedNode;
-    const node = $createImageNode({
-      altText,
-      height,
-      maxWidth,
-      showCaption,
-      src,
-      width
-    });
-    const nestedEditor = node.__caption;
-    const editorState = nestedEditor.parseEditorState(caption.editorState);
-    if (!editorState.isEmpty()) {
-      nestedEditor.setEditorState(editorState);
-    }
-    return node;
-  }
-  exportDOM() {
-    const element = document.createElement('img');
-    element.setAttribute('src', this.__src);
-    element.setAttribute('alt', this.__altText);
-    element.setAttribute('width', this.__width.toString());
-    element.setAttribute('height', this.__height.toString());
-    return {
-      element
-    };
-  }
-  static importDOM() {
-    return {
-      img: node => ({
-        conversion: convertImageElement,
-        priority: 0
-      })
-    };
-  }
-  constructor(src, altText, maxWidth, width, height, showCaption, caption, captionsEnabled, key) {
-    super(key);
-    this.__src = src;
-    this.__altText = altText;
-    this.__maxWidth = maxWidth;
-    this.__width = width || 'inherit';
-    this.__height = height || 'inherit';
-    this.__showCaption = showCaption || false;
-    this.__caption = caption || lexical.createEditor();
-    this.__captionsEnabled = captionsEnabled || captionsEnabled === undefined;
-  }
-  exportJSON() {
-    return {
-      altText: this.getAltText(),
-      caption: this.__caption.toJSON(),
-      height: this.__height === 'inherit' ? 0 : this.__height,
-      maxWidth: this.__maxWidth,
-      showCaption: this.__showCaption,
-      src: this.getSrc(),
-      type: 'image',
-      version: 1,
-      width: this.__width === 'inherit' ? 0 : this.__width
-    };
-  }
-  setWidthAndHeight(width, height) {
-    const writable = this.getWritable();
-    writable.__width = width;
-    writable.__height = height;
-  }
-  setShowCaption(showCaption) {
-    const writable = this.getWritable();
-    writable.__showCaption = showCaption;
-  }
-
-  // View
-
-  createDOM(config) {
-    const span = document.createElement('span');
-    const theme = config.theme;
-    const className = theme.image;
-    if (className !== undefined) {
-      span.className = className;
-    }
-    return span;
-  }
-  updateDOM() {
-    return false;
-  }
-  getSrc() {
-    return this.__src;
-  }
-  getAltText() {
-    return this.__altText;
-  }
-  decorate() {
-    return /*#__PURE__*/React.createElement(React.Suspense, {
-      fallback: null
-    }, /*#__PURE__*/React.createElement(ImageComponent, {
-      src: this.__src,
-      altText: this.__altText,
-      width: this.__width,
-      height: this.__height,
-      maxWidth: this.__maxWidth,
-      nodeKey: this.getKey(),
-      showCaption: this.__showCaption,
-      caption: this.__caption,
-      captionsEnabled: this.__captionsEnabled,
-      resizable: true
-    }));
-  }
-}
-function $createImageNode({
-  altText,
-  height,
-  maxWidth = 500,
-  captionsEnabled,
-  src,
-  width,
-  showCaption,
-  caption,
-  key
-}) {
-  return lexical.$applyNodeReplacement(new ImageNode(src, altText, maxWidth, width, height, showCaption, caption, captionsEnabled, key));
-}
-function $isImageNode(node) {
-  return node instanceof ImageNode;
-}
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-a2eefb8e.js'); }));
+const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-7ce340d3.js'); }));
 function convertInlineImageElement(domNode) {
   if (domNode instanceof HTMLImageElement) {
     const {
@@ -19741,7 +19572,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-248d0019.js'); }));
+const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-c00e143f.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -20090,7 +19921,7 @@ function $createYouTubeNode(videoID) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const PlaygroundNodes = [richText.HeadingNode, list.ListNode, list.ListItemNode, richText.QuoteNode, code.CodeNode, table.TableNode, table.TableCellNode, table.TableRowNode, code.CodeHighlightNode, link.AutoLinkNode, link.LinkNode, overflow.OverflowNode, StickyNode, ImageNode, InlineImageNode, EmojiNode, EquationNode, AutocompleteNode, LexicalHorizontalRuleNode.HorizontalRuleNode, TweetNode, YouTubeNode, mark.MarkNode, CollapsibleContainerNode, CollapsibleContentNode, CollapsibleTitleNode, PageBreakNode, LayoutContainerNode, LayoutItemNode];
+const PlaygroundNodes = [richText.HeadingNode, list.ListNode, list.ListItemNode, richText.QuoteNode, code.CodeNode, table.TableNode, table.TableCellNode, table.TableRowNode, code.CodeHighlightNode, link.AutoLinkNode, link.LinkNode, overflow.OverflowNode, StickyNode, InlineImageNode, EmojiNode, EquationNode, AutocompleteNode, LexicalHorizontalRuleNode.HorizontalRuleNode, TweetNode, YouTubeNode, mark.MarkNode, CollapsibleContainerNode, CollapsibleContentNode, CollapsibleTitleNode, PageBreakNode, LayoutContainerNode, LayoutItemNode];
 var PlaygroundNodes$1 = PlaygroundNodes;
 
 /**
@@ -20253,6 +20084,175 @@ function Button({
   }, dataTestId && {
     'data-test-id': dataTestId
   }), children);
+}
+
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-0bb22101.js'); }));
+function convertImageElement(domNode) {
+  const img = domNode;
+  if (img.src.startsWith('file:///')) {
+    return null;
+  }
+  const {
+    alt: altText,
+    src,
+    width,
+    height
+  } = img;
+  const node = $createImageNode({
+    altText,
+    height,
+    src,
+    width
+  });
+  return {
+    node
+  };
+}
+class ImageNode extends lexical.DecoratorNode {
+  // Captions cannot yet be used within editor cells
+
+  static getType() {
+    return 'image';
+  }
+  static clone(node) {
+    return new ImageNode(node.__src, node.__altText, node.__maxWidth, node.__width, node.__height, node.__showCaption, node.__caption, node.__captionsEnabled, node.__key);
+  }
+  static importJSON(serializedNode) {
+    const {
+      altText,
+      height,
+      width,
+      maxWidth,
+      caption,
+      src,
+      showCaption
+    } = serializedNode;
+    const node = $createImageNode({
+      altText,
+      height,
+      maxWidth,
+      showCaption,
+      src,
+      width
+    });
+    const nestedEditor = node.__caption;
+    const editorState = nestedEditor.parseEditorState(caption.editorState);
+    if (!editorState.isEmpty()) {
+      nestedEditor.setEditorState(editorState);
+    }
+    return node;
+  }
+  exportDOM() {
+    const element = document.createElement('img');
+    element.setAttribute('src', this.__src);
+    element.setAttribute('alt', this.__altText);
+    element.setAttribute('width', this.__width.toString());
+    element.setAttribute('height', this.__height.toString());
+    return {
+      element
+    };
+  }
+  static importDOM() {
+    return {
+      img: node => ({
+        conversion: convertImageElement,
+        priority: 0
+      })
+    };
+  }
+  constructor(src, altText, maxWidth, width, height, showCaption, caption, captionsEnabled, key) {
+    super(key);
+    this.__src = src;
+    this.__altText = altText;
+    this.__maxWidth = maxWidth;
+    this.__width = width || 'inherit';
+    this.__height = height || 'inherit';
+    this.__showCaption = showCaption || false;
+    this.__caption = caption || lexical.createEditor();
+    this.__captionsEnabled = captionsEnabled || captionsEnabled === undefined;
+  }
+  exportJSON() {
+    return {
+      altText: this.getAltText(),
+      caption: this.__caption.toJSON(),
+      height: this.__height === 'inherit' ? 0 : this.__height,
+      maxWidth: this.__maxWidth,
+      showCaption: this.__showCaption,
+      src: this.getSrc(),
+      type: 'image',
+      version: 1,
+      width: this.__width === 'inherit' ? 0 : this.__width
+    };
+  }
+  setWidthAndHeight(width, height) {
+    const writable = this.getWritable();
+    writable.__width = width;
+    writable.__height = height;
+  }
+  setShowCaption(showCaption) {
+    const writable = this.getWritable();
+    writable.__showCaption = showCaption;
+  }
+
+  // View
+
+  createDOM(config) {
+    const span = document.createElement('span');
+    const theme = config.theme;
+    const className = theme.image;
+    if (className !== undefined) {
+      span.className = className;
+    }
+    return span;
+  }
+  updateDOM() {
+    return false;
+  }
+  getSrc() {
+    return this.__src;
+  }
+  getAltText() {
+    return this.__altText;
+  }
+  decorate() {
+    return /*#__PURE__*/React.createElement(React.Suspense, {
+      fallback: null
+    }, /*#__PURE__*/React.createElement(ImageComponent, {
+      src: this.__src,
+      altText: this.__altText,
+      width: this.__width,
+      height: this.__height,
+      maxWidth: this.__maxWidth,
+      nodeKey: this.getKey(),
+      showCaption: this.__showCaption,
+      caption: this.__caption,
+      captionsEnabled: this.__captionsEnabled,
+      resizable: true
+    }));
+  }
+}
+function $createImageNode({
+  altText,
+  height,
+  maxWidth = 500,
+  captionsEnabled,
+  src,
+  width,
+  showCaption,
+  caption,
+  key
+}) {
+  return lexical.$applyNodeReplacement(new ImageNode(src, altText, maxWidth, width, height, showCaption, caption, captionsEnabled, key));
+}
+function $isImageNode(node) {
+  return node instanceof ImageNode;
 }
 
 /* eslint-disable */
@@ -36475,10 +36475,10 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-13f72ccc.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-bf915d31.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-a68c0533.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-dfe29445.js'); }).then(function (n) { return n.parserMarkdown; })
+  css: () => Promise.resolve().then(function () { return require('./parser-postcss-0fcd6109.js'); }).then(function (n) { return n.parserPostcss; }),
+  html: () => Promise.resolve().then(function () { return require('./parser-html-93b8ac96.js'); }).then(function (n) { return n.parserHtml; }),
+  js: () => Promise.resolve().then(function () { return require('./parser-babel-002bd00d.js'); }).then(function (n) { return n.parserBabel; }),
+  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-848cb759.js'); }).then(function (n) { return n.parserMarkdown; })
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -36487,7 +36487,7 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-  } = await Promise.resolve().then(function () { return require('./standalone-a97b5ea7.js'); }).then(function (n) { return n.standalone; });
+  } = await Promise.resolve().then(function () { return require('./standalone-2dbb6213.js'); }).then(function (n) { return n.standalone; });
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {

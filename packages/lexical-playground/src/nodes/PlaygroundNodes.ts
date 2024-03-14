@@ -46,7 +46,6 @@ const PlaygroundNodes: Array<Klass<LexicalNode>> = [
   LinkNode,
   OverflowNode,
   StickyNode,
-  ImageNode,
   InlineImageNode,
   EmojiNode,
   EquationNode,
