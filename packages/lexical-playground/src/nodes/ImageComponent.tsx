@@ -48,7 +48,7 @@ import LinkPlugin from '../plugins/LinkPlugin';
 import ContentEditable from '../ui/ContentEditable';
 import ImageResizer from '../ui/ImageResizer';
 import Placeholder from '../ui/Placeholder';
-import {$isImageNode, ImageNode} from './ImageNode';
+import {ImageNode} from './ImageNode';
 
 const imageCache = new Set();
 
@@ -140,10 +140,8 @@ export default function ImageComponent({
         const event: KeyboardEvent = payload;
         event.preventDefault();
         const node = $getNodeByKey(nodeKey);
-        if ($isImageNode(node)) {
-          node.remove();
-          return true;
-        }
+        (node as ImageNode).remove();
+        return true;
       }
       return false;
     },
@@ -339,9 +337,7 @@ export default function ImageComponent({
 
     editor.update(() => {
       const node = $getNodeByKey(nodeKey);
-      if ($isImageNode(node)) {
-        node.setWidthAndHeight(nextWidth, nextHeight);
-      }
+      (node as ImageNode).setWidthAndHeight(nextWidth, nextHeight);
     });
   };
 
