@@ -664,7 +664,7 @@ async function buildAll() {
     const {name, sourcePath, outputPath, packageName, modules} = pkg;
 
     if (pkg.packageName === 'lexical-standalone-editor') {
-      await buildTSDeclarationFiles();
+      await exec('tsc -p ./tsconfig.sa.build.json');
       await moveTSDeclarationFilesIntoDist(packageName, outputPath);
     }
 

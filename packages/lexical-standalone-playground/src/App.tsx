@@ -11,13 +11,61 @@ import {
   useSettings,
 } from 'lexical-playground/src/context/SettingsContext';
 import logo from 'lexical-playground/src/images/logo.svg';
+import {ImageNode} from 'lexical-playground/src/nodes/ImageNode';
+import ImagesPlugin, {
+  InsertImageDialog,
+} from 'lexical-playground/src/plugins/ImagesPlugin';
 import Settings from 'lexical-playground/src/Settings';
-import {LexicalEditor} from 'lexical-standalone-editor/src/Editor';
+import {DropDownItem} from 'lexical-playground/src/ui/DropDown';
+import {
+  CustomComponentPickerOption,
+  GetBaseOptions,
+  LexicalEditor,
+} from 'lexical-standalone-editor/src/Editor';
 import * as React from 'react';
 
 console.warn(
   'If you are profiling the playground app, please ensure you turn off the debug view. You can disable it by pressing on the settings control in the bottom-left of your screen and toggling the debug view setting.',
 );
+
+const getCustomBaseOptions: GetBaseOptions = (
+  editor: unknown,
+  showModal: unknown,
+) => {
+  return [
+    new CustomComponentPickerOption('Image', {
+      icon: <i className="icon image" />,
+      keywords: ['image', 'photo', 'picture', 'file'],
+      onSelect: () =>
+        //@ts-ignore
+        showModal('Insert Image', (onClose) => (
+          //@ts-ignore
+          <InsertImageDialog activeEditor={editor} onClose={onClose} />
+        )),
+    }),
+  ];
+};
+
+//@ts-ignore
+const getCustomInsertOptions: JSX.Element[] = (
+  editor: unknown,
+  showModal: unknown,
+) => {
+  return [
+    <DropDownItem
+      onClick={() => {
+        //@ts-ignore
+        showModal('Insert Image', (onClose) => (
+          //@ts-ignore
+          <InsertImageDialog activeEditor={editor} onClose={onClose} />
+        ));
+      }}
+      className="item">
+      <i className="icon image" />
+      <span className="text">Image</span>
+    </DropDownItem>,
+  ];
+};
 
 function App(): JSX.Element {
   const {settings} = useSettings();
@@ -34,6 +82,11 @@ function App(): JSX.Element {
           editorState: prepopulatedRichText,
           ...settings,
         }}
+        customNodes={[ImageNode]}
+        customPlugins={[<ImagesPlugin />]}
+        getCustomBaseOptions={getCustomBaseOptions}
+        // @ts-ignore
+        getCustomInsertOptions={getCustomInsertOptions}
       />
       <Settings />
     </div>

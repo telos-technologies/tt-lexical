@@ -41,7 +41,11 @@ import AutoLinkPlugin from 'lexical-playground/src/plugins/AutoLinkPlugin';
 import CodeActionMenuPlugin from 'lexical-playground/src/plugins/CodeActionMenuPlugin';
 import CodeHighlightPlugin from 'lexical-playground/src/plugins/CodeHighlightPlugin';
 import CollapsiblePlugin from 'lexical-playground/src/plugins/CollapsiblePlugin';
-import ComponentPickerPlugin, { ComponentPickerOption, getBaseOptions,GetCustomBaseOptions } from 'lexical-playground/src/plugins/ComponentPickerPlugin';
+import ComponentPickerPlugin, {
+  ComponentPickerOption,
+  getBaseOptions,
+  GetCustomBaseOptions,
+} from 'lexical-playground/src/plugins/ComponentPickerPlugin';
 import ContextMenuPlugin from 'lexical-playground/src/plugins/ContextMenuPlugin';
 import DocsPlugin from 'lexical-playground/src/plugins/DocsPlugin';
 import DragDropPaste from 'lexical-playground/src/plugins/DragDropPastePlugin';
@@ -66,7 +70,9 @@ import TableCellResizer from 'lexical-playground/src/plugins/TableCellResizer';
 import TableOfContentsPlugin from 'lexical-playground/src/plugins/TableOfContentsPlugin';
 import {TableContext} from 'lexical-playground/src/plugins/TablePlugin';
 import TestRecorderPlugin from 'lexical-playground/src/plugins/TestRecorderPlugin';
-import ToolbarPlugin from 'lexical-playground/src/plugins/ToolbarPlugin';
+import ToolbarPlugin, {
+  GetCustomInsertOptions,
+} from 'lexical-playground/src/plugins/ToolbarPlugin';
 import TreeViewPlugin from 'lexical-playground/src/plugins/TreeViewPlugin';
 import TwitterPlugin from 'lexical-playground/src/plugins/TwitterPlugin';
 import TypingPerfPlugin from 'lexical-playground/src/plugins/TypingPerfPlugin';
@@ -80,7 +86,7 @@ import {CAN_USE_DOM} from 'shared/canUseDOM';
 
 export class CustomComponentPickerOption extends ComponentPickerOption {}
 
-export type GetBaseOptions = typeof getBaseOptions
+export type GetBaseOptions = typeof getBaseOptions;
 
 type NormalizedEditorProps = Omit<Settings, 'measureTypingPerf'>;
 
@@ -89,6 +95,7 @@ type EditorProps = NormalizedEditorProps & {
   showToolbar?: boolean;
   articleCssClass?: string;
   getCustomBaseOptions?: GetCustomBaseOptions;
+  getCustomInsertOptions?: GetCustomInsertOptions;
 };
 
 function Editor({
@@ -105,7 +112,8 @@ function Editor({
   showActions,
   showToolbar = true,
   articleCssClass,
-  getCustomBaseOptions
+  getCustomBaseOptions,
+  getCustomInsertOptions,
 }: EditorProps): JSX.Element {
   const {historyState} = useSharedHistoryContext();
 
@@ -145,7 +153,10 @@ function Editor({
   return (
     <>
       {isRichText && showToolbar && (
-        <ToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
+        <ToolbarPlugin
+          setIsLinkEditMode={setIsLinkEditMode}
+          getCustomInsertOptions={getCustomInsertOptions}
+        />
       )}
       <div
         className={`editor-container ${showTreeView ? 'tree-view' : ''} ${

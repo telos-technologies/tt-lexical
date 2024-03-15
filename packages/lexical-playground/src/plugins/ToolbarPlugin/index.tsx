@@ -83,6 +83,7 @@ import {getSelectedNode} from '../../utils/getSelectedNode';
 import {sanitizeUrl} from '../../utils/url';
 import {EmbedConfigs} from '../AutoEmbedPlugin';
 import {INSERT_COLLAPSIBLE_COMMAND} from '../CollapsiblePlugin';
+import {ShowModal} from '../ComponentPickerPlugin';
 import {InsertEquationDialog} from '../EquationsPlugin';
 import {InsertImageDialog} from '../ImagesPlugin';
 import {InsertInlineImageDialog} from '../InlineImagePlugin';
@@ -500,10 +501,17 @@ function ElementFormatDropdown({
   );
 }
 
+export type GetCustomInsertOptions = (
+  editor: LexicalEditor,
+  showModal: ShowModal,
+) => JSX.Element[];
+
 export default function ToolbarPlugin({
   setIsLinkEditMode,
+  getCustomInsertOptions,
 }: {
   setIsLinkEditMode: Dispatch<boolean>;
+  getCustomInsertOptions?: GetCustomInsertOptions;
 }): JSX.Element {
   const [editor] = useLexicalComposerContext();
   const [activeEditor, setActiveEditor] = useState(editor);
@@ -533,6 +541,16 @@ export default function ToolbarPlugin({
   const [isRTL, setIsRTL] = useState(false);
   const [codeLanguage, setCodeLanguage] = useState<string>('');
   const [isEditable, setIsEditable] = useState(() => editor.isEditable());
+
+  const customInsertOptions = React.useMemo(() => {
+    let customComponentPickerOptions: JSX.Element[] = [];
+
+    if (getCustomInsertOptions) {
+      customComponentPickerOptions = getCustomInsertOptions(activeEditor, showModal);
+    }
+
+    return customComponentPickerOptions;
+  }, [activeEditor, showModal]);
 
   const $updateToolbar = useCallback(() => {
     const selection = $getSelection();
@@ -1011,6 +1029,7 @@ export default function ToolbarPlugin({
             buttonLabel="Insert"
             buttonAriaLabel="Insert specialized editor node"
             buttonIconClassName="icon plus">
+            {customInsertOptions.map((CustomOption) => CustomOption)}
             <DropDownItem
               onClick={() => {
                 activeEditor.dispatchCommand(
@@ -1029,19 +1048,6 @@ export default function ToolbarPlugin({
               className="item">
               <i className="icon page-break" />
               <span className="text">Page Break</span>
-            </DropDownItem>
-            <DropDownItem
-              onClick={() => {
-                showModal('Insert Image', (onClose) => (
-                  <InsertImageDialog
-                    activeEditor={activeEditor}
-                    onClose={onClose}
-                  />
-                ));
-              }}
-              className="item">
-              <i className="icon image" />
-              <span className="text">Image</span>
             </DropDownItem>
             <DropDownItem
               onClick={() => {

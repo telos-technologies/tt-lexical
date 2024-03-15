@@ -23,7 +23,6 @@ import {CollapsibleTitleNode} from '../plugins/CollapsiblePlugin/CollapsibleTitl
 import {AutocompleteNode} from './AutocompleteNode';
 import {EmojiNode} from './EmojiNode';
 import {EquationNode} from './EquationNode';
-import {ImageNode} from './ImageNode';
 import {InlineImageNode} from './InlineImageNode';
 import {LayoutContainerNode} from './LayoutContainerNode';
 import {LayoutItemNode} from './LayoutItemNode';

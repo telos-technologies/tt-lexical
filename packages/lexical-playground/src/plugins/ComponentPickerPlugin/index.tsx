@@ -138,7 +138,7 @@ function getDynamicOptions(editor: LexicalEditor, queryString: string) {
   return options;
 }
 
-type ShowModal = ReturnType<typeof useModal>[1];
+export type ShowModal = ReturnType<typeof useModal>[1];
 
 export function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
   return [
