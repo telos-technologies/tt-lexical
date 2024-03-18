@@ -641,10 +641,6 @@ async function moveTSDeclarationFilesIntoDist(packageName, outputPath) {
   await fs.copy(`./.ts-temp/${packageName}/src`, outputPath);
 }
 
-async function moveTSDeclarationFilesIntoDistSA(packageName, outputPath) {
-  await fs.copy(`./.ts-temp/`, outputPath);
-}
-
 function buildForkModule(outputPath, outputFileName) {
   const lines = [
     getComment(),
@@ -669,7 +665,6 @@ async function buildAll() {
 
     if (pkg.packageName === 'lexical-standalone-editor') {
       await exec('tsc -p ./tsconfig.build.json');
-      await moveTSDeclarationFilesIntoDistSA(packageName, outputPath);
     }
 
 
