@@ -85,8 +85,6 @@ import {EmbedConfigs} from '../AutoEmbedPlugin';
 import {INSERT_COLLAPSIBLE_COMMAND} from '../CollapsiblePlugin';
 import {ShowModal} from '../ComponentPickerPlugin';
 import {InsertEquationDialog} from '../EquationsPlugin';
-import {InsertImageDialog} from '../ImagesPlugin';
-import {InsertInlineImageDialog} from '../InlineImagePlugin';
 import InsertLayoutDialog from '../LayoutPlugin/InsertLayoutDialog';
 import {INSERT_PAGE_BREAK} from '../PageBreakPlugin';
 import {InsertTableDialog} from '../TablePlugin';
@@ -1048,19 +1046,6 @@ export default function ToolbarPlugin({
               className="item">
               <i className="icon page-break" />
               <span className="text">Page Break</span>
-            </DropDownItem>
-            <DropDownItem
-              onClick={() => {
-                showModal('Insert Inline Image', (onClose) => (
-                  <InsertInlineImageDialog
-                    activeEditor={activeEditor}
-                    onClose={onClose}
-                  />
-                ));
-              }}
-              className="item">
-              <i className="icon image" />
-              <span className="text">Inline Image</span>
             </DropDownItem>
             <DropDownItem
               onClick={() => {

@@ -43,7 +43,7 @@ import {DialogActions} from '../ui/Dialog';
 import Placeholder from '../ui/Placeholder';
 import Select from '../ui/Select';
 import TextInput from '../ui/TextInput';
-import {$isInlineImageNode, InlineImageNode} from './InlineImageNode';
+import {InlineImageNode} from './InlineImageNode';
 
 const imageCache = new Set();
 
@@ -209,10 +209,10 @@ export default function InlineImageComponent({
         const event: KeyboardEvent = payload;
         event.preventDefault();
         const node = $getNodeByKey(nodeKey);
-        if ($isInlineImageNode(node)) {
-          node.remove();
+        // if ($isInlineImageNode(node)) {
+          (node as InlineImageNode).remove();
           return true;
-        }
+        // }
       }
       return false;
     },

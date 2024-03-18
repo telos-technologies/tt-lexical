@@ -12,9 +12,13 @@ import {
 } from 'lexical-playground/src/context/SettingsContext';
 import logo from 'lexical-playground/src/images/logo.svg';
 import {ImageNode} from 'lexical-playground/src/nodes/ImageNode';
+import {InlineImageNode} from 'lexical-playground/src/nodes/InlineImageNode';
 import ImagesPlugin, {
   InsertImageDialog,
 } from 'lexical-playground/src/plugins/ImagesPlugin';
+import InlineImagePlugin, {
+  InsertInlineImageDialog,
+} from 'lexical-playground/src/plugins/InlineImagePlugin';
 import Settings from 'lexical-playground/src/Settings';
 import {DropDownItem} from 'lexical-playground/src/ui/DropDown';
 import {
@@ -53,6 +57,7 @@ const getCustomInsertOptions: JSX.Element[] = (
 ) => {
   return [
     <DropDownItem
+      key="insertImage"
       onClick={() => {
         //@ts-ignore
         showModal('Insert Image', (onClose) => (
@@ -63,6 +68,22 @@ const getCustomInsertOptions: JSX.Element[] = (
       className="item">
       <i className="icon image" />
       <span className="text">Image</span>
+    </DropDownItem>,
+    <DropDownItem
+      key="insertInlineImage"
+      onClick={() => {
+        //@ts-ignore
+        showModal('Insert Inline Image', (onClose) => (
+          <InsertInlineImageDialog
+            //@ts-ignore
+            activeEditor={editor}
+            onClose={onClose}
+          />
+        ));
+      }}
+      className="item">
+      <i className="icon image" />
+      <span className="text">Inline Image</span>
     </DropDownItem>,
   ];
 };
@@ -82,8 +103,11 @@ function App(): JSX.Element {
           editorState: prepopulatedRichText,
           ...settings,
         }}
-        customNodes={[ImageNode]}
-        customPlugins={[<ImagesPlugin />]}
+        customNodes={[ImageNode, InlineImageNode]}
+        customPlugins={[
+          <ImagesPlugin key="imagePlugin" />,
+          <InlineImagePlugin key="inlineImagePlugin" />,
+        ]}
         getCustomBaseOptions={getCustomBaseOptions}
         // @ts-ignore
         getCustomInsertOptions={getCustomInsertOptions}
