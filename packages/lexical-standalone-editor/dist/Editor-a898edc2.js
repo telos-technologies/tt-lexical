@@ -19033,7 +19033,7 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-6ab1c0b5.js'); }));
+const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-66a4e238.js'); }));
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19148,205 +19148,6 @@ function $createEquationNode(equation = '', inline = false) {
 }
 function $isEquationNode(node) {
   return node instanceof EquationNode;
-}
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-91cf4060.js'); }));
-function convertInlineImageElement(domNode) {
-  if (domNode instanceof HTMLImageElement) {
-    const {
-      alt: altText,
-      src,
-      width,
-      height
-    } = domNode;
-    const node = $createInlineImageNode({
-      altText,
-      height,
-      src,
-      width
-    });
-    return {
-      node
-    };
-  }
-  return null;
-}
-class InlineImageNode extends lexical.DecoratorNode {
-  static getType() {
-    return 'inline-image';
-  }
-  static clone(node) {
-    return new InlineImageNode(node.__src, node.__altText, node.__position, node.__width, node.__height, node.__showCaption, node.__caption, node.__key);
-  }
-  static importJSON(serializedNode) {
-    const {
-      altText,
-      height,
-      width,
-      caption,
-      src,
-      showCaption,
-      position
-    } = serializedNode;
-    const node = $createInlineImageNode({
-      altText,
-      height,
-      position,
-      showCaption,
-      src,
-      width
-    });
-    const nestedEditor = node.__caption;
-    const editorState = nestedEditor.parseEditorState(caption.editorState);
-    if (!editorState.isEmpty()) {
-      nestedEditor.setEditorState(editorState);
-    }
-    return node;
-  }
-  static importDOM() {
-    return {
-      img: node => ({
-        conversion: convertInlineImageElement,
-        priority: 0
-      })
-    };
-  }
-  constructor(src, altText, position, width, height, showCaption, caption, key) {
-    super(key);
-    this.__src = src;
-    this.__altText = altText;
-    this.__width = width || 'inherit';
-    this.__height = height || 'inherit';
-    this.__showCaption = showCaption || false;
-    this.__caption = caption || lexical.createEditor();
-    this.__position = position;
-  }
-  exportDOM() {
-    const element = document.createElement('img');
-    element.setAttribute('src', this.__src);
-    element.setAttribute('alt', this.__altText);
-    element.setAttribute('width', this.__width.toString());
-    element.setAttribute('height', this.__height.toString());
-    return {
-      element
-    };
-  }
-  exportJSON() {
-    return {
-      altText: this.getAltText(),
-      caption: this.__caption.toJSON(),
-      height: this.__height === 'inherit' ? 0 : this.__height,
-      position: this.__position,
-      showCaption: this.__showCaption,
-      src: this.getSrc(),
-      type: 'inline-image',
-      version: 1,
-      width: this.__width === 'inherit' ? 0 : this.__width
-    };
-  }
-  getSrc() {
-    return this.__src;
-  }
-  getAltText() {
-    return this.__altText;
-  }
-  setAltText(altText) {
-    const writable = this.getWritable();
-    writable.__altText = altText;
-  }
-  setWidthAndHeight(width, height) {
-    const writable = this.getWritable();
-    writable.__width = width;
-    writable.__height = height;
-  }
-  getShowCaption() {
-    return this.__showCaption;
-  }
-  setShowCaption(showCaption) {
-    const writable = this.getWritable();
-    writable.__showCaption = showCaption;
-  }
-  getPosition() {
-    return this.__position;
-  }
-  setPosition(position) {
-    const writable = this.getWritable();
-    writable.__position = position;
-  }
-  update(payload) {
-    const writable = this.getWritable();
-    const {
-      altText,
-      showCaption,
-      position
-    } = payload;
-    if (altText !== undefined) {
-      writable.__altText = altText;
-    }
-    if (showCaption !== undefined) {
-      writable.__showCaption = showCaption;
-    }
-    if (position !== undefined) {
-      writable.__position = position;
-    }
-  }
-
-  // View
-
-  createDOM(config) {
-    const span = document.createElement('span');
-    const className = `${config.theme.inlineImage} position-${this.__position}`;
-    if (className !== undefined) {
-      span.className = className;
-    }
-    return span;
-  }
-  updateDOM(prevNode, dom, config) {
-    const position = this.__position;
-    if (position !== prevNode.__position) {
-      const className = `${config.theme.inlineImage} position-${position}`;
-      if (className !== undefined) {
-        dom.className = className;
-      }
-    }
-    return false;
-  }
-  decorate() {
-    return /*#__PURE__*/React.createElement(React.Suspense, {
-      fallback: null
-    }, /*#__PURE__*/React.createElement(InlineImageComponent, {
-      src: this.__src,
-      altText: this.__altText,
-      width: this.__width,
-      height: this.__height,
-      nodeKey: this.getKey(),
-      showCaption: this.__showCaption,
-      caption: this.__caption,
-      position: this.__position
-    }));
-  }
-}
-function $createInlineImageNode({
-  altText,
-  position,
-  height,
-  src,
-  width,
-  showCaption,
-  caption,
-  key
-}) {
-  return lexical.$applyNodeReplacement(new InlineImageNode(src, altText, position, width, height, showCaption, caption, key));
-}
-function $isInlineImageNode(node) {
-  return node instanceof InlineImageNode;
 }
 
 /**
@@ -19572,7 +19373,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-02522e02.js'); }));
+const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-215dd0d0.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -19921,7 +19722,7 @@ function $createYouTubeNode(videoID) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const PlaygroundNodes = [richText.HeadingNode, list.ListNode, list.ListItemNode, richText.QuoteNode, code.CodeNode, table.TableNode, table.TableCellNode, table.TableRowNode, code.CodeHighlightNode, link.AutoLinkNode, link.LinkNode, overflow.OverflowNode, StickyNode, InlineImageNode, EmojiNode, EquationNode, AutocompleteNode, LexicalHorizontalRuleNode.HorizontalRuleNode, TweetNode, YouTubeNode, mark.MarkNode, CollapsibleContainerNode, CollapsibleContentNode, CollapsibleTitleNode, PageBreakNode, LayoutContainerNode, LayoutItemNode];
+const PlaygroundNodes = [richText.HeadingNode, list.ListNode, list.ListItemNode, richText.QuoteNode, code.CodeNode, table.TableNode, table.TableCellNode, table.TableRowNode, code.CodeHighlightNode, link.AutoLinkNode, link.LinkNode, overflow.OverflowNode, StickyNode, EmojiNode, EquationNode, AutocompleteNode, LexicalHorizontalRuleNode.HorizontalRuleNode, TweetNode, YouTubeNode, mark.MarkNode, CollapsibleContainerNode, CollapsibleContentNode, CollapsibleTitleNode, PageBreakNode, LayoutContainerNode, LayoutItemNode];
 var PlaygroundNodes$1 = PlaygroundNodes;
 
 /**
@@ -20093,7 +19894,7 @@ function Button({
  * LICENSE file in the root directory of this source tree.
  *
  */
-const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-3ef5bd26.js'); }));
+const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-a395981c.js'); }));
 function convertImageElement(domNode) {
   const img = domNode;
   if (img.src.startsWith('file:///')) {
@@ -36468,10 +36269,10 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-1c1d7aa8.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-98ee346d.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-c2e75392.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-b57861ae.js'); }).then(function (n) { return n.parserMarkdown; })
+  css: () => Promise.resolve().then(function () { return require('./parser-postcss-de969c4f.js'); }).then(function (n) { return n.parserPostcss; }),
+  html: () => Promise.resolve().then(function () { return require('./parser-html-05b8bd06.js'); }).then(function (n) { return n.parserHtml; }),
+  js: () => Promise.resolve().then(function () { return require('./parser-babel-1ee10dc5.js'); }).then(function (n) { return n.parserBabel; }),
+  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-aec5c9e1.js'); }).then(function (n) { return n.parserMarkdown; })
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -36480,7 +36281,7 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-  } = await Promise.resolve().then(function () { return require('./standalone-4e3890f1.js'); }).then(function (n) { return n.standalone; });
+  } = await Promise.resolve().then(function () { return require('./standalone-f369e3d3.js'); }).then(function (n) { return n.standalone; });
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {
@@ -38036,36 +37837,10 @@ const CAN_USE_DOM = typeof window !== 'undefined' && typeof window.document !== 
  * LICENSE file in the root directory of this source tree.
  *
  */
-function FileInput({
-  accept,
-  label,
-  onChange,
-  'data-test-id': dataTestId
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "Input__wrapper"
-  }, /*#__PURE__*/React.createElement("label", {
-    className: "Input__label"
-  }, label), /*#__PURE__*/React.createElement("input", {
-    type: "file",
-    accept: accept,
-    className: "Input__input",
-    onChange: e => onChange(e.target.files),
-    "data-test-id": dataTestId
-  }));
-}
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 const INSERT_IMAGE_COMMAND = lexical.createCommand('INSERT_IMAGE_COMMAND');
-const TRANSPARENT_IMAGE$1 = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-const img$1 = document.createElement('img');
-img$1.src = TRANSPARENT_IMAGE$1;
+const TRANSPARENT_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+const img = document.createElement('img');
+img.src = TRANSPARENT_IMAGE;
 
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -39434,257 +39209,6 @@ function FloatingTextFormatToolbarPlugin({
 }) {
   const [editor] = LexicalComposerContext.useLexicalComposerContext();
   return useFloatingTextFormatToolbar(editor, anchorElem);
-}
-
-function Select({
-  children,
-  label,
-  className,
-  ...other
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "Input__wrapper"
-  }, /*#__PURE__*/React.createElement("label", {
-    style: {
-      marginTop: '-1em'
-    },
-    className: "Input__label"
-  }, label), /*#__PURE__*/React.createElement("select", _extends({}, other, {
-    className: className || 'select'
-  }), children));
-}
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-const getDOMSelection = targetWindow => CAN_USE_DOM ? (targetWindow || window).getSelection() : null;
-const INSERT_INLINE_IMAGE_COMMAND = lexical.createCommand('INSERT_INLINE_IMAGE_COMMAND');
-function InsertInlineImageDialog({
-  activeEditor,
-  onClose
-}) {
-  const hasModifier = React.useRef(false);
-  const [src, setSrc] = React.useState('');
-  const [altText, setAltText] = React.useState('');
-  const [showCaption, setShowCaption] = React.useState(false);
-  const [position, setPosition] = React.useState('left');
-  const isDisabled = src === '';
-  const handleShowCaptionChange = e => {
-    setShowCaption(e.target.checked);
-  };
-  const handlePositionChange = e => {
-    setPosition(e.target.value);
-  };
-  const loadImage = files => {
-    const reader = new FileReader();
-    reader.onload = function () {
-      if (typeof reader.result === 'string') {
-        setSrc(reader.result);
-      }
-      return '';
-    };
-    if (files !== null) {
-      reader.readAsDataURL(files[0]);
-    }
-  };
-  React.useEffect(() => {
-    hasModifier.current = false;
-    const handler = e => {
-      hasModifier.current = e.altKey;
-    };
-    document.addEventListener('keydown', handler);
-    return () => {
-      document.removeEventListener('keydown', handler);
-    };
-  }, [activeEditor]);
-  const handleOnClick = () => {
-    const payload = {
-      altText,
-      position,
-      showCaption,
-      src
-    };
-    activeEditor.dispatchCommand(INSERT_INLINE_IMAGE_COMMAND, payload);
-    onClose();
-  };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginBottom: '1em'
-    }
-  }, /*#__PURE__*/React.createElement(FileInput, {
-    label: "Image Upload",
-    onChange: loadImage,
-    accept: "image/*",
-    "data-test-id": "image-modal-file-upload"
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginBottom: '1em'
-    }
-  }, /*#__PURE__*/React.createElement(TextInput, {
-    label: "Alt Text",
-    placeholder: "Descriptive alternative text",
-    onChange: setAltText,
-    value: altText,
-    "data-test-id": "image-modal-alt-text-input"
-  })), /*#__PURE__*/React.createElement(Select, {
-    style: {
-      marginBottom: '1em',
-      width: '290px'
-    },
-    label: "Position",
-    name: "position",
-    id: "position-select",
-    onChange: handlePositionChange
-  }, /*#__PURE__*/React.createElement("option", {
-    value: "left"
-  }, "Left"), /*#__PURE__*/React.createElement("option", {
-    value: "right"
-  }, "Right"), /*#__PURE__*/React.createElement("option", {
-    value: "full"
-  }, "Full Width")), /*#__PURE__*/React.createElement("div", {
-    className: "Input__wrapper"
-  }, /*#__PURE__*/React.createElement("input", {
-    id: "caption",
-    className: "InlineImageNode_Checkbox",
-    type: "checkbox",
-    checked: showCaption,
-    onChange: handleShowCaptionChange
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "caption"
-  }, "Show Caption")), /*#__PURE__*/React.createElement(DialogActions, null, /*#__PURE__*/React.createElement(Button, {
-    "data-test-id": "image-modal-file-upload-btn",
-    disabled: isDisabled,
-    onClick: () => handleOnClick()
-  }, "Confirm")));
-}
-function InlineImagePlugin() {
-  const [editor] = LexicalComposerContext.useLexicalComposerContext();
-  React.useEffect(() => {
-    if (!editor.hasNodes([InlineImageNode])) {
-      throw new Error('ImagesPlugin: ImageNode not registered on editor');
-    }
-    return utils$1.mergeRegister(editor.registerCommand(INSERT_INLINE_IMAGE_COMMAND, payload => {
-      const imageNode = $createInlineImageNode(payload);
-      lexical.$insertNodes([imageNode]);
-      if (lexical.$isRootOrShadowRoot(imageNode.getParentOrThrow())) {
-        utils$1.$wrapNodeInElement(imageNode, lexical.$createParagraphNode).selectEnd();
-      }
-      return true;
-    }, lexical.COMMAND_PRIORITY_EDITOR), editor.registerCommand(lexical.DRAGSTART_COMMAND, event => {
-      return onDragStart(event);
-    }, lexical.COMMAND_PRIORITY_HIGH), editor.registerCommand(lexical.DRAGOVER_COMMAND, event => {
-      return onDragover(event);
-    }, lexical.COMMAND_PRIORITY_LOW), editor.registerCommand(lexical.DROP_COMMAND, event => {
-      return onDrop(event, editor);
-    }, lexical.COMMAND_PRIORITY_HIGH));
-  }, [editor]);
-  return null;
-}
-const TRANSPARENT_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-const img = document.createElement('img');
-img.src = TRANSPARENT_IMAGE;
-function onDragStart(event) {
-  const node = getImageNodeInSelection();
-  if (!node) {
-    return false;
-  }
-  const dataTransfer = event.dataTransfer;
-  if (!dataTransfer) {
-    return false;
-  }
-  dataTransfer.setData('text/plain', '_');
-  dataTransfer.setDragImage(img, 0, 0);
-  dataTransfer.setData('application/x-lexical-drag', JSON.stringify({
-    data: {
-      altText: node.__altText,
-      caption: node.__caption,
-      height: node.__height,
-      key: node.getKey(),
-      showCaption: node.__showCaption,
-      src: node.__src,
-      width: node.__width
-    },
-    type: 'image'
-  }));
-  return true;
-}
-function onDragover(event) {
-  const node = getImageNodeInSelection();
-  if (!node) {
-    return false;
-  }
-  if (!canDropImage(event)) {
-    event.preventDefault();
-  }
-  return true;
-}
-function onDrop(event, editor) {
-  const node = getImageNodeInSelection();
-  if (!node) {
-    return false;
-  }
-  const data = getDragImageData(event);
-  if (!data) {
-    return false;
-  }
-  event.preventDefault();
-  if (canDropImage(event)) {
-    const range = getDragSelection(event);
-    node.remove();
-    const rangeSelection = lexical.$createRangeSelection();
-    if (range !== null && range !== undefined) {
-      rangeSelection.applyDOMRange(range);
-    }
-    lexical.$setSelection(rangeSelection);
-    editor.dispatchCommand(INSERT_INLINE_IMAGE_COMMAND, data);
-  }
-  return true;
-}
-function getImageNodeInSelection() {
-  const selection = lexical.$getSelection();
-  if (!lexical.$isNodeSelection(selection)) {
-    return null;
-  }
-  const nodes = selection.getNodes();
-  const node = nodes[0];
-  return $isInlineImageNode(node) ? node : null;
-}
-function getDragImageData(event) {
-  const dragData = event.dataTransfer?.getData('application/x-lexical-drag');
-  if (!dragData) {
-    return null;
-  }
-  const {
-    type,
-    data
-  } = JSON.parse(dragData);
-  if (type !== 'image') {
-    return null;
-  }
-  return data;
-}
-function canDropImage(event) {
-  const target = event.target;
-  return !!(target && target instanceof HTMLElement && !target.closest('code, span.editor-image') && target.parentElement && target.parentElement.closest('div.ContentEditable__root'));
-}
-function getDragSelection(event) {
-  let range;
-  const target = event.target;
-  const targetWindow = target == null ? null : target.nodeType === 9 ? target.defaultView : target.ownerDocument.defaultView;
-  const domSelection = getDOMSelection(targetWindow);
-  if (document.caretRangeFromPoint) {
-    range = document.caretRangeFromPoint(event.clientX, event.clientY);
-  } else if (event.rangeParent && domSelection !== null) {
-    domSelection.collapse(event.rangeParent, event.rangeOffset || 0);
-    range = domSelection.getRangeAt(0);
-  } else {
-    throw Error('Cannot get the selection when dragging');
-  }
-  return range;
 }
 
 /**
@@ -42432,18 +41956,6 @@ function ToolbarPlugin({
     className: "text"
   }, "Page Break")), /*#__PURE__*/React.createElement(DropDownItem, {
     onClick: () => {
-      showModal('Insert Inline Image', onClose => /*#__PURE__*/React.createElement(InsertInlineImageDialog, {
-        activeEditor: activeEditor,
-        onClose: onClose
-      }));
-    },
-    className: "item"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "icon image"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "text"
-  }, "Inline Image")), /*#__PURE__*/React.createElement(DropDownItem, {
-    onClick: () => {
       showModal('Insert Table', onClose => /*#__PURE__*/React.createElement(InsertTableDialog, {
         activeEditor: activeEditor,
         onClose: onClose
@@ -42833,7 +42345,7 @@ function Editor({
   }), /*#__PURE__*/React.createElement(LexicalTablePlugin.TablePlugin, {
     hasCellMerge: tableCellMerge,
     hasCellBackgroundColor: tableCellBackgroundColor
-  }), /*#__PURE__*/React.createElement(TableCellResizerPlugin, null), /*#__PURE__*/React.createElement(InlineImagePlugin, null), /*#__PURE__*/React.createElement(LinkPlugin, null), /*#__PURE__*/React.createElement(TwitterPlugin, null), /*#__PURE__*/React.createElement(YouTubePlugin, null), !isEditable && /*#__PURE__*/React.createElement(LexicalClickableLinkPlugin, null), /*#__PURE__*/React.createElement(LexicalHorizontalRulePlugin.HorizontalRulePlugin, null), /*#__PURE__*/React.createElement(EquationsPlugin, null), /*#__PURE__*/React.createElement(TabFocusPlugin, null), /*#__PURE__*/React.createElement(LexicalTabIndentationPlugin.TabIndentationPlugin, null), /*#__PURE__*/React.createElement(CollapsiblePlugin, null), /*#__PURE__*/React.createElement(PageBreakPlugin, null), /*#__PURE__*/React.createElement(LayoutPlugin, null), floatingAnchorElem && !isSmallWidthViewport && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(DraggableBlockPlugin, {
+  }), /*#__PURE__*/React.createElement(TableCellResizerPlugin, null), /*#__PURE__*/React.createElement(LinkPlugin, null), /*#__PURE__*/React.createElement(TwitterPlugin, null), /*#__PURE__*/React.createElement(YouTubePlugin, null), !isEditable && /*#__PURE__*/React.createElement(LexicalClickableLinkPlugin, null), /*#__PURE__*/React.createElement(LexicalHorizontalRulePlugin.HorizontalRulePlugin, null), /*#__PURE__*/React.createElement(EquationsPlugin, null), /*#__PURE__*/React.createElement(TabFocusPlugin, null), /*#__PURE__*/React.createElement(LexicalTabIndentationPlugin.TabIndentationPlugin, null), /*#__PURE__*/React.createElement(CollapsiblePlugin, null), /*#__PURE__*/React.createElement(PageBreakPlugin, null), /*#__PURE__*/React.createElement(LayoutPlugin, null), floatingAnchorElem && !isSmallWidthViewport && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(DraggableBlockPlugin, {
     anchorElem: floatingAnchorElem
   }), /*#__PURE__*/React.createElement(CodeActionMenuPlugin, {
     anchorElem: floatingAnchorElem
@@ -42885,22 +42397,15 @@ const LexicalEditor = ({
 };
 
 exports.$isEquationNode = $isEquationNode;
-exports.$isInlineImageNode = $isInlineImageNode;
 exports.$isStickyNode = $isStickyNode;
-exports.Button = Button;
 exports.CustomComponentPickerOption = CustomComponentPickerOption;
-exports.DialogActions = DialogActions;
 exports.EmojisPlugin = EmojisPlugin;
 exports.ErrorBoundary = ErrorBoundary;
-exports.FloatingTextFormatToolbarPlugin = FloatingTextFormatToolbarPlugin;
 exports.KatexRenderer = KatexRenderer;
 exports.LexicalContentEditable = LexicalContentEditable;
 exports.LexicalEditor = LexicalEditor;
 exports.LinkPlugin = LinkPlugin;
 exports.Placeholder = Placeholder;
-exports.Select = Select;
-exports.TextInput = TextInput;
 exports.baseTheme = baseTheme;
 exports.useLayoutEffect = useLayoutEffect;
-exports.useModal = useModal;
 exports.useSharedHistoryContext = useSharedHistoryContext;
