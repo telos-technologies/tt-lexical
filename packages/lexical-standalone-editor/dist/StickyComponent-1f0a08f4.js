@@ -15,7 +15,7 @@ var LexicalNestedComposer = require('@lexical/react/LexicalNestedComposer');
 var LexicalPlainTextPlugin = require('@lexical/react/LexicalPlainTextPlugin');
 var lexical = require('lexical');
 var React = require('react');
-var Editor = require('./Editor-a898edc2.js');
+var Editor = require('./Editor-b3eda820.js');
 var yWebsocket = require('y-websocket');
 var yjs = require('yjs');
 require('@lexical/react/LexicalAutoFocusPlugin');

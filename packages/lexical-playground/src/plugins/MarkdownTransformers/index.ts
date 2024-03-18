@@ -47,6 +47,8 @@ import {
   EquationNode,
 } from '../../nodes/EquationNode';
 import {$createImageNode, $isImageNode, ImageNode} from '../../nodes/ImageNode';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import {InlineImageNode} from '../../nodes/InlineImageNode';
 import {$createTweetNode, $isTweetNode, TweetNode} from '../../nodes/TweetNode';
 import emojiList from '../../utils/emoji-list';
 
@@ -72,7 +74,8 @@ export const HR: ElementTransformer = {
 };
 
 export const IMAGE: TextMatchTransformer = {
-  dependencies: [ImageNode],
+  // InlineImageNode is here to generate InlineImageComponent at the build time
+  dependencies: [ImageNode, InlineImageNode],
   export: (node) => {
     if (!$isImageNode(node)) {
       return null;
