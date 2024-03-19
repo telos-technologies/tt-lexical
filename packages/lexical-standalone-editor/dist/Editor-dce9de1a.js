@@ -19033,7 +19033,7 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-cadf195a.js'); }));
+const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-ab5ecd5b.js'); }));
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19373,7 +19373,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-1f0a08f4.js'); }));
+const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-28ca15d2.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -19894,7 +19894,7 @@ function Button({
  * LICENSE file in the root directory of this source tree.
  *
  */
-const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-f4e32e67.js'); }));
+const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-59e98112.js'); }));
 function convertImageElement(domNode) {
   const img = domNode;
   if (img.src.startsWith('file:///')) {
@@ -20063,7 +20063,7 @@ function $isImageNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-3dfd46d8.js'); }));
+const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-748f27c4.js'); }));
 function convertInlineImageElement(domNode) {
   if (domNode instanceof HTMLImageElement) {
     const {
@@ -35087,6 +35087,7 @@ const HR = {
   type: 'element'
 };
 const IMAGE = {
+  // InlineImageNode is here to generate InlineImageComponent at the build time
   dependencies: [ImageNode, InlineImageNode],
   export: node => {
     if (!$isImageNode(node)) {
@@ -36465,10 +36466,10 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-0761b8d3.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-9323a4e7.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-18d94d9c.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-4e2145e1.js'); }).then(function (n) { return n.parserMarkdown; })
+  css: () => Promise.resolve().then(function () { return require('./parser-postcss-aa3b11cc.js'); }).then(function (n) { return n.parserPostcss; }),
+  html: () => Promise.resolve().then(function () { return require('./parser-html-e05c1ec5.js'); }).then(function (n) { return n.parserHtml; }),
+  js: () => Promise.resolve().then(function () { return require('./parser-babel-60b70fc7.js'); }).then(function (n) { return n.parserBabel; }),
+  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-4f30af5c.js'); }).then(function (n) { return n.parserMarkdown; })
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -36477,7 +36478,7 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-  } = await Promise.resolve().then(function () { return require('./standalone-00031f0f.js'); }).then(function (n) { return n.standalone; });
+  } = await Promise.resolve().then(function () { return require('./standalone-2e8de5ca.js'); }).then(function (n) { return n.standalone; });
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {
@@ -37792,18 +37793,21 @@ function ComponentPickerMenuPlugin({
   const checkForTriggerMatch = LexicalTypeaheadMenuPlugin.useBasicTypeaheadTriggerMatch('/', {
     minLength: 0
   });
-  const options = React.useMemo(() => {
-    const baseOptions = getBaseOptions(editor, showModal);
+  const customOptions = React.useMemo(() => {
     let customComponentPickerOptions = [];
     if (getCustomBaseOptions) {
       customComponentPickerOptions = getCustomBaseOptions(editor, showModal);
     }
+    return customComponentPickerOptions;
+  }, [editor, showModal, getCustomBaseOptions]);
+  const options = React.useMemo(() => {
+    const baseOptions = getBaseOptions(editor, showModal);
     if (!queryString) {
-      return baseOptions;
+      return [...customOptions, ...baseOptions];
     }
     const regex = new RegExp(queryString, 'i');
-    return [...getDynamicOptions(editor, queryString), ...baseOptions.filter(option => regex.test(option.title) || option.keywords.some(keyword => regex.test(keyword))), ...customComponentPickerOptions];
-  }, [editor, queryString, showModal]);
+    return [...customOptions.filter(option => regex.test(option.title) || option.keywords.some(keyword => regex.test(keyword))), ...getDynamicOptions(editor, queryString), ...baseOptions.filter(option => regex.test(option.title) || option.keywords.some(keyword => regex.test(keyword)))];
+  }, [editor, queryString, showModal, customOptions]);
   const onSelectOption = React.useCallback((selectedOption, nodeToRemove, closeMenu, matchingString) => {
     editor.update(() => {
       nodeToRemove?.remove();

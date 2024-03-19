@@ -293,31 +293,41 @@ export default function ComponentPickerMenuPlugin({
     minLength: 0,
   });
 
-  const options = useMemo(() => {
-    const baseOptions = getBaseOptions(editor, showModal);
-
+  const customOptions = useMemo(() => {
     let customComponentPickerOptions: ComponentPickerOption[] = [];
 
     if (getCustomBaseOptions) {
       customComponentPickerOptions = getCustomBaseOptions(editor, showModal);
     }
 
+
+    return customComponentPickerOptions
+  }, [editor, showModal, getCustomBaseOptions]);
+
+  
+  const options = useMemo(() => {
+    const baseOptions = getBaseOptions(editor, showModal);
+
     if (!queryString) {
-      return baseOptions;
+      return [...customOptions, ...baseOptions];
     }
 
     const regex = new RegExp(queryString, 'i');
 
     return [
+      ...customOptions.filter(
+        (option) =>
+          regex.test(option.title) ||
+          option.keywords.some((keyword) => regex.test(keyword)),
+      ),
       ...getDynamicOptions(editor, queryString),
       ...baseOptions.filter(
         (option) =>
           regex.test(option.title) ||
           option.keywords.some((keyword) => regex.test(keyword)),
       ),
-      ...customComponentPickerOptions,
     ];
-  }, [editor, queryString, showModal]);
+  }, [editor, queryString, showModal, customOptions]);
 
   const onSelectOption = useCallback(
     (
