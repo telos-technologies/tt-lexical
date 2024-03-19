@@ -12,9 +12,10 @@ This branch is base on `main -> tt-lexical` branches
 - `git checkout tt-lexical`
 - `git rebase main`
 - `git push`
-- `git checkout tt-lexical-editor`
+- `git checkout feature/sa/tt-lexical-editor`
 - `git rebase tt-lexical`
+- do necessary changes
 - `npm run build:standalone`
 - `git push`
 
-See `tt-lexical-standalone` for the build version for the editor
+See `tt-lexical-standalone-build-only` for the build version for the editor
