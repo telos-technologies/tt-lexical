@@ -46,15 +46,21 @@ function YouTubeComponent({
       className={className}
       format={format}
       nodeKey={nodeKey}>
-      <iframe
-        width="560"
-        height="315"
-        src={`https://www.youtube-nocookie.com/embed/${videoID}`}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen={true}
-        title="YouTube video"
-      />
+      <div className="player-wrapper">
+        <iframe
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen={true}
+          className="react-player"
+          frameBorder="0"
+          height="100%"
+          src={`https://www.youtube.com/embed/${videoID}`}
+          style={{
+            display: 'inline-block',
+          }}
+          title="YouTube video"
+          width="100%"
+        />
+      </div>
     </BlockWithAlignableContents>
   );
 }
