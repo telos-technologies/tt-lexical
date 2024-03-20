@@ -16,7 +16,7 @@ var useLexicalNodeSelection = require('@lexical/react/useLexicalNodeSelection');
 var utils = require('@lexical/utils');
 var lexical = require('lexical');
 var React = require('react');
-var Editor = require('./Editor-dce9de1a.js');
+var Editor = require('./Editor-2f2db02c.js');
 require('@lexical/react/LexicalCharacterLimitPlugin');
 require('@lexical/react/LexicalCheckListPlugin');
 require('@lexical/react/LexicalClearEditorPlugin');
