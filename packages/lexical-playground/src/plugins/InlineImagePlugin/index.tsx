@@ -166,7 +166,7 @@ export default function InlineImagePlugin(): JSX.Element | null {
 
   useEffect(() => {
     if (!editor.hasNodes([InlineImageNode])) {
-      throw new Error('ImagesPlugin: ImageNode not registered on editor');
+      throw new Error('ImagesPlugin: InlineImageNode not registered on editor');
     }
 
     return mergeRegister(

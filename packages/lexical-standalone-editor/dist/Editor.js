@@ -21,7 +21,7 @@ require('@lexical/react/LexicalRichTextPlugin');
 require('@lexical/react/LexicalTabIndentationPlugin');
 require('@lexical/react/LexicalTablePlugin');
 require('@lexical/react/useLexicalEditable');
-var Editor = require('./Editor-4a7e7884.js');
+var Editor = require('./Editor-f557c619.js');
 require('react');
 require('@lexical/code');
 require('@lexical/link');

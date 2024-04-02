@@ -354,7 +354,7 @@ export default function InlineImageComponent({
     <Suspense fallback={null}>
       <>
         <div draggable={draggable}>
-          <button
+          {editor.isEditable() && <button
             className="image-edit-button"
             ref={buttonRef}
             onClick={() => {
@@ -367,7 +367,7 @@ export default function InlineImageComponent({
               ));
             }}>
             Edit
-          </button>
+          </button>}
           <LazyImage
             className={
               isFocused

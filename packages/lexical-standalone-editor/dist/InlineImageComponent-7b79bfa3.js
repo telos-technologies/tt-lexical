@@ -15,7 +15,7 @@ var useLexicalNodeSelection = require('@lexical/react/useLexicalNodeSelection');
 var utils = require('@lexical/utils');
 var lexical = require('lexical');
 var React = require('react');
-var Editor = require('./Editor-4a7e7884.js');
+var Editor = require('./Editor-f557c619.js');
 require('@lexical/react/LexicalCharacterLimitPlugin');
 require('@lexical/react/LexicalCheckListPlugin');
 require('@lexical/react/LexicalClearEditorPlugin');
@@ -290,7 +290,7 @@ function InlineImageComponent({
     fallback: null
   }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     draggable: draggable
-  }, /*#__PURE__*/React.createElement("button", {
+  }, editor.isEditable() && /*#__PURE__*/React.createElement("button", {
     className: "image-edit-button",
     ref: buttonRef,
     onClick: () => {
