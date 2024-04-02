@@ -173,84 +173,85 @@ function TextFormatFloatingToolbar({
     );
   }, [editor, updateTextFormatFloatingToolbar]);
 
+  if (!editor.isEditable()) {
+    //@ts-ignore
+    return null;
+  }
+
   return (
     <div ref={popupCharStylesEditorRef} className="floating-text-format-popup">
-      {editor.isEditable() && (
-        <>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
-            }}
-            className={'popup-item spaced ' + (isBold ? 'active' : '')}
-            aria-label="Format text as bold">
-            <i className="format bold" />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
-            }}
-            className={'popup-item spaced ' + (isItalic ? 'active' : '')}
-            aria-label="Format text as italics">
-            <i className="format italic" />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
-            }}
-            className={'popup-item spaced ' + (isUnderline ? 'active' : '')}
-            aria-label="Format text to underlined">
-            <i className="format underline" />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough');
-            }}
-            className={'popup-item spaced ' + (isStrikethrough ? 'active' : '')}
-            aria-label="Format text with a strikethrough">
-            <i className="format strikethrough" />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'subscript');
-            }}
-            className={'popup-item spaced ' + (isSubscript ? 'active' : '')}
-            title="Subscript"
-            aria-label="Format Subscript">
-            <i className="format subscript" />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'superscript');
-            }}
-            className={'popup-item spaced ' + (isSuperscript ? 'active' : '')}
-            title="Superscript"
-            aria-label="Format Superscript">
-            <i className="format superscript" />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
-            }}
-            className={'popup-item spaced ' + (isCode ? 'active' : '')}
-            aria-label="Insert code block">
-            <i className="format code" />
-          </button>
-          <button
-            type="button"
-            onClick={insertLink}
-            className={'popup-item spaced ' + (isLink ? 'active' : '')}
-            aria-label="Insert link">
-            <i className="format link" />
-          </button>
-        </>
-      )}
+      <button
+        type="button"
+        onClick={() => {
+          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
+        }}
+        className={'popup-item spaced ' + (isBold ? 'active' : '')}
+        aria-label="Format text as bold">
+        <i className="format bold" />
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
+        }}
+        className={'popup-item spaced ' + (isItalic ? 'active' : '')}
+        aria-label="Format text as italics">
+        <i className="format italic" />
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
+        }}
+        className={'popup-item spaced ' + (isUnderline ? 'active' : '')}
+        aria-label="Format text to underlined">
+        <i className="format underline" />
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough');
+        }}
+        className={'popup-item spaced ' + (isStrikethrough ? 'active' : '')}
+        aria-label="Format text with a strikethrough">
+        <i className="format strikethrough" />
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'subscript');
+        }}
+        className={'popup-item spaced ' + (isSubscript ? 'active' : '')}
+        title="Subscript"
+        aria-label="Format Subscript">
+        <i className="format subscript" />
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'superscript');
+        }}
+        className={'popup-item spaced ' + (isSuperscript ? 'active' : '')}
+        title="Superscript"
+        aria-label="Format Superscript">
+        <i className="format superscript" />
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
+        }}
+        className={'popup-item spaced ' + (isCode ? 'active' : '')}
+        aria-label="Insert code block">
+        <i className="format code" />
+      </button>
+      <button
+        type="button"
+        onClick={insertLink}
+        className={'popup-item spaced ' + (isLink ? 'active' : '')}
+        aria-label="Insert link">
+        <i className="format link" />
+      </button>
     </div>
   );
 }

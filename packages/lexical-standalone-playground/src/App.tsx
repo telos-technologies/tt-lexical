@@ -13,6 +13,7 @@ import {
 import logo from 'lexical-playground/src/images/logo.svg';
 import {ImageNode} from 'lexical-playground/src/nodes/ImageNode';
 import {InlineImageNode} from 'lexical-playground/src/nodes/InlineImageNode';
+// import ActionsPlugin from 'lexical-playground/src/plugins/ActionsPlugin';
 import ImagesPlugin, {
   InsertImageDialog,
 } from 'lexical-playground/src/plugins/ImagesPlugin';
@@ -107,6 +108,7 @@ function App(): JSX.Element {
         customPlugins={[
           <ImagesPlugin key="imagePlugin" />,
           <InlineImagePlugin key="inlineImagePlugin" />,
+          // <ActionsPlugin key="actionPlugin" isRichText={true} />
         ]}
         getCustomBaseOptions={getCustomBaseOptions}
         // @ts-ignore

@@ -19033,7 +19033,7 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-e1b59ecc.js'); }));
+const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-180825b4.js'); }));
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19373,7 +19373,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-608fd217.js'); }));
+const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-b68d8a3d.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -19900,7 +19900,7 @@ function Button({
  * LICENSE file in the root directory of this source tree.
  *
  */
-const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-ab08c259.js'); }));
+const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-65ce304f.js'); }));
 function convertImageElement(domNode) {
   const img = domNode;
   if (img.src.startsWith('file:///')) {
@@ -20069,7 +20069,7 @@ function $isImageNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-7b79bfa3.js'); }));
+const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-7cd62bf3.js'); }));
 function convertInlineImageElement(domNode) {
   if (domNode instanceof HTMLImageElement) {
     const {
@@ -36472,10 +36472,10 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-31ccffa0.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-1dc6986e.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-21b86eda.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-19490034.js'); }).then(function (n) { return n.parserMarkdown; })
+  css: () => Promise.resolve().then(function () { return require('./parser-postcss-7829191b.js'); }).then(function (n) { return n.parserPostcss; }),
+  html: () => Promise.resolve().then(function () { return require('./parser-html-f2a75384.js'); }).then(function (n) { return n.parserHtml; }),
+  js: () => Promise.resolve().then(function () { return require('./parser-babel-09098a75.js'); }).then(function (n) { return n.parserBabel; }),
+  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-1ef948d2.js'); }).then(function (n) { return n.parserMarkdown; })
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -36484,7 +36484,7 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-  } = await Promise.resolve().then(function () { return require('./standalone-5cf8033b.js'); }).then(function (n) { return n.standalone; });
+  } = await Promise.resolve().then(function () { return require('./standalone-3707b57e.js'); }).then(function (n) { return n.standalone; });
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {
@@ -39246,10 +39246,14 @@ function TextFormatFloatingToolbar({
       return false;
     }, lexical.COMMAND_PRIORITY_LOW));
   }, [editor, updateTextFormatFloatingToolbar]);
+  if (!editor.isEditable()) {
+    //@ts-ignore
+    return null;
+  }
   return /*#__PURE__*/React.createElement("div", {
     ref: popupCharStylesEditorRef,
     className: "floating-text-format-popup"
-  }, editor.isEditable() && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("button", {
     type: "button",
     onClick: () => {
       editor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, 'bold');
@@ -39321,7 +39325,7 @@ function TextFormatFloatingToolbar({
     "aria-label": "Insert link"
   }, /*#__PURE__*/React.createElement("i", {
     className: "format link"
-  }))));
+  })));
 }
 function useFloatingTextFormatToolbar(editor, anchorElem) {
   const [isText, setIsText] = React.useState(false);
