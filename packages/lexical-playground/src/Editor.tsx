@@ -62,7 +62,6 @@ import SpeechToTextPlugin from './plugins/SpeechToTextPlugin';
 import TabFocusPlugin from './plugins/TabFocusPlugin';
 import TableCellActionMenuPlugin from './plugins/TableActionMenuPlugin';
 import TableCellResizer from './plugins/TableCellResizer';
-import TableOfContentsPlugin from './plugins/TableOfContentsPlugin';
 import ToolbarPlugin from './plugins/ToolbarPlugin';
 import TreeViewPlugin from './plugins/TreeViewPlugin';
 import TwitterPlugin from './plugins/TwitterPlugin';
@@ -85,7 +84,6 @@ export default function Editor(): JSX.Element {
       isCharLimitUtf8,
       isRichText,
       showTreeView,
-      showTableOfContents,
       shouldUseLexicalContextMenu,
       tableCellMerge,
       tableCellBackgroundColor,
@@ -234,7 +232,6 @@ export default function Editor(): JSX.Element {
           />
         )}
         {isAutocomplete && <AutocompletePlugin />}
-        <div>{showTableOfContents && <TableOfContentsPlugin />}</div>
         {shouldUseLexicalContextMenu && <ContextMenuPlugin />}
         <ActionsPlugin isRichText={isRichText} />
       </div>
