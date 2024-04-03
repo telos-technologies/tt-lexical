@@ -19033,7 +19033,7 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-180825b4.js'); }));
+const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-aeb5f07c.js'); }));
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19373,7 +19373,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-b68d8a3d.js'); }));
+const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-a9b413fe.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -19900,7 +19900,7 @@ function Button({
  * LICENSE file in the root directory of this source tree.
  *
  */
-const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-65ce304f.js'); }));
+const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-39063358.js'); }));
 function convertImageElement(domNode) {
   const img = domNode;
   if (img.src.startsWith('file:///')) {
@@ -20069,7 +20069,7 @@ function $isImageNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-7cd62bf3.js'); }));
+const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-6aa5aba4.js'); }));
 function convertInlineImageElement(domNode) {
   if (domNode instanceof HTMLImageElement) {
     const {
@@ -36472,10 +36472,10 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-7829191b.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-f2a75384.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-09098a75.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-1ef948d2.js'); }).then(function (n) { return n.parserMarkdown; })
+  css: () => Promise.resolve().then(function () { return require('./parser-postcss-d6886175.js'); }).then(function (n) { return n.parserPostcss; }),
+  html: () => Promise.resolve().then(function () { return require('./parser-html-efbbe5d6.js'); }).then(function (n) { return n.parserHtml; }),
+  js: () => Promise.resolve().then(function () { return require('./parser-babel-bcff1ae5.js'); }).then(function (n) { return n.parserBabel; }),
+  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-90490720.js'); }).then(function (n) { return n.parserMarkdown; })
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -36484,7 +36484,7 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-  } = await Promise.resolve().then(function () { return require('./standalone-3707b57e.js'); }).then(function (n) { return n.standalone; });
+  } = await Promise.resolve().then(function () { return require('./standalone-f8962edb.js'); }).then(function (n) { return n.standalone; });
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {
@@ -40714,6 +40714,7 @@ function isHeadingBelowTheTopOfThePage(element) {
 function TableOfContentsList({
   tableOfContents
 }) {
+  const [showToc, setShowToc] = React.useState(true);
   const [selectedKey, setSelectedKey] = React.useState('');
   const selectedIndex = React.useRef(0);
   const [editor] = LexicalComposerContext.useLexicalComposerContext();
@@ -40771,10 +40772,62 @@ function TableOfContentsList({
     document.addEventListener('scroll', onScroll);
     return () => document.removeEventListener('scroll', onScroll);
   }, [tableOfContents, editor]);
+  if (!showToc) {
+    // show button to show TOC
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: '300px',
+        padding: '10px',
+        position: 'fixed',
+        right: '-76px',
+        top: '300px'
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      style: {
+        backgroundColor: 'transparent',
+        border: '1px solid #777',
+        borderRadius: '3px',
+        color: '#777',
+        cursor: 'pointer',
+        fontWeight: 'bold',
+        padding: '4px 6px',
+        transform: 'rotate(-90deg)'
+      },
+      onClick: () => setShowToc(true)
+    }, "Show Table of Contents"));
+  }
   return /*#__PURE__*/React.createElement("div", {
-    className: "table-of-contents"
-  }, /*#__PURE__*/React.createElement("ul", {
-    className: "headings"
+    className: "table-of-contents",
+    style: {
+      backgroundColor: 'white',
+      border: '1px solid lightgray',
+      borderRadius: '6px',
+      paddingLeft: '0px',
+      paddingTop: '14px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: '5px',
+      position: 'fixed',
+      right: '34px'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    style: {
+      backgroundColor: 'transparent',
+      border: '1px solid #777',
+      borderRadius: '3px',
+      color: '#777',
+      cursor: 'pointer',
+      fontWeight: 'bold',
+      padding: '4px 6px'
+    },
+    onClick: () => setShowToc(false)
+  }, "Hide Table of Contents")), /*#__PURE__*/React.createElement("ul", {
+    className: "headings",
+    style: {
+      height: '260px',
+      marginTop: '34px'
+    }
   }, tableOfContents.map(([key, text, tag], index) => {
     if (index === 0) {
       return /*#__PURE__*/React.createElement("div", {
@@ -40785,7 +40838,7 @@ function TableOfContentsList({
         onClick: () => scrollToNode(key, index),
         role: "button",
         tabIndex: 0
-      }, ('' + text).length > 20 ? text.substring(0, 20) + '...' : text), /*#__PURE__*/React.createElement("br", null));
+      }, ('' + text).length > 20 ? text.substring(0, 20) + '...' : text));
     } else {
       return /*#__PURE__*/React.createElement("div", {
         className: `normal-heading-wrapper ${selectedKey === key ? 'selected-heading-wrapper' : ''}`,

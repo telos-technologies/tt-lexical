@@ -48,6 +48,7 @@ function TableOfContentsList({
 }: {
   tableOfContents: Array<TableOfContentsEntry>;
 }): JSX.Element {
+  const [showToc, setShowToc] = useState(true);
   const [selectedKey, setSelectedKey] = useState('');
   const selectedIndex = useRef(0);
   const [editor] = useLexicalComposerContext();
@@ -136,9 +137,71 @@ function TableOfContentsList({
     return () => document.removeEventListener('scroll', onScroll);
   }, [tableOfContents, editor]);
 
+  if (!showToc) {
+    // show button to show TOC
+    return (
+      <div
+        style={{
+          height: '300px',
+          padding: '10px',
+          position: 'fixed',
+          right: '-76px',
+          top: '300px',
+        }}>
+        <button
+          style={{
+            backgroundColor: 'transparent',
+            border: '1px solid #777',
+            borderRadius: '3px',
+            color: '#777',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            padding: '4px 6px',
+            transform: 'rotate(-90deg)',
+          }}
+          onClick={() => setShowToc(true)}>
+          Show Table of Contents
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div className="table-of-contents">
-      <ul className="headings">
+    <div
+      className="table-of-contents"
+      style={{
+        backgroundColor: 'white',
+        border: '1px solid lightgray',
+        borderRadius: '6px',
+        paddingLeft: '0px',
+        paddingTop: '14px',
+      }}>
+      <div
+        style={{
+          marginBottom: '5px',
+          position: 'fixed',
+          right: '34px',
+        }}>
+        <button
+          style={{
+            backgroundColor: 'transparent',
+            border: '1px solid #777',
+            borderRadius: '3px',
+            color: '#777',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            padding: '4px 6px',
+          }}
+          onClick={() => setShowToc(false)}>
+          Hide Table of Contents
+        </button>
+      </div>
+      <ul
+        className="headings"
+        style={{
+          height: '260px',
+          marginTop: '34px',
+        }}>
         {tableOfContents.map(([key, text, tag], index) => {
           if (index === 0) {
             return (
@@ -152,7 +215,6 @@ function TableOfContentsList({
                     ? text.substring(0, 20) + '...'
                     : text}
                 </div>
-                <br />
               </div>
             );
           } else {
