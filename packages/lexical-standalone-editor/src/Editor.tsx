@@ -66,7 +66,6 @@ import SpeechToTextPlugin from 'lexical-playground/src/plugins/SpeechToTextPlugi
 import TabFocusPlugin from 'lexical-playground/src/plugins/TabFocusPlugin';
 import TableCellActionMenuPlugin from 'lexical-playground/src/plugins/TableActionMenuPlugin';
 import TableCellResizer from 'lexical-playground/src/plugins/TableCellResizer';
-import TableOfContentsPlugin from 'lexical-playground/src/plugins/TableOfContentsPlugin';
 import {TableContext} from 'lexical-playground/src/plugins/TablePlugin';
 import TestRecorderPlugin from 'lexical-playground/src/plugins/TestRecorderPlugin';
 import ToolbarPlugin, {
@@ -242,7 +241,6 @@ function Editor({
           />
         )}
         {isAutocomplete && <AutocompletePlugin />}
-        <div>{showTableOfContents && <TableOfContentsPlugin />}</div>
         {shouldUseLexicalContextMenu && <ContextMenuPlugin />}
         {showActions && <ActionsPlugin isRichText={isRichText || true} />}
       </div>

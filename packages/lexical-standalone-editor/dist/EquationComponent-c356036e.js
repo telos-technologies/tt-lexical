@@ -10,7 +10,7 @@ var LexicalComposerContext = require('@lexical/react/LexicalComposerContext');
 var utils = require('@lexical/utils');
 var lexical = require('lexical');
 var React = require('react');
-var Editor = require('./Editor-6b9a9601.js');
+var Editor = require('./Editor-04f1c900.js');
 require('@lexical/react/LexicalAutoFocusPlugin');
 require('@lexical/react/LexicalCharacterLimitPlugin');
 require('@lexical/react/LexicalCheckListPlugin');
@@ -49,7 +49,6 @@ require('@lexical/react/LexicalTypeaheadMenuPlugin');
 require('@lexical/react/LexicalContextMenuPlugin');
 require('@lexical/react/LexicalLinkPlugin');
 require('@lexical/react/LexicalMarkdownShortcutPlugin');
-require('@lexical/react/LexicalTableOfContents');
 require('@lexical/react/LexicalTreeView');
 require('@lexical/react/LexicalContentEditable');
 

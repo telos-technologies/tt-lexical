@@ -15,7 +15,7 @@ var LexicalNestedComposer = require('@lexical/react/LexicalNestedComposer');
 var LexicalPlainTextPlugin = require('@lexical/react/LexicalPlainTextPlugin');
 var lexical = require('lexical');
 var React = require('react');
-var Editor = require('./Editor-6b9a9601.js');
+var Editor = require('./Editor-04f1c900.js');
 var yWebsocket = require('y-websocket');
 var yjs = require('yjs');
 require('@lexical/react/LexicalAutoFocusPlugin');
@@ -53,7 +53,6 @@ require('@lexical/react/LexicalTypeaheadMenuPlugin');
 require('@lexical/react/LexicalContextMenuPlugin');
 require('@lexical/react/LexicalLinkPlugin');
 require('@lexical/react/LexicalMarkdownShortcutPlugin');
-require('@lexical/react/LexicalTableOfContents');
 require('@lexical/react/LexicalTreeView');
 require('@lexical/react/LexicalContentEditable');
 

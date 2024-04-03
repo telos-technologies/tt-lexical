@@ -21,7 +21,7 @@ require('@lexical/react/LexicalRichTextPlugin');
 require('@lexical/react/LexicalTabIndentationPlugin');
 require('@lexical/react/LexicalTablePlugin');
 require('@lexical/react/useLexicalEditable');
-var Editor = require('./Editor-6b9a9601.js');
+var Editor = require('./Editor-04f1c900.js');
 require('react');
 require('@lexical/code');
 require('@lexical/link');
@@ -49,7 +49,6 @@ require('@lexical/react/LexicalTypeaheadMenuPlugin');
 require('@lexical/react/LexicalContextMenuPlugin');
 require('@lexical/react/LexicalLinkPlugin');
 require('@lexical/react/LexicalMarkdownShortcutPlugin');
-require('@lexical/react/LexicalTableOfContents');
 require('@lexical/react/LexicalTreeView');
 require('@lexical/react/LexicalContentEditable');
 

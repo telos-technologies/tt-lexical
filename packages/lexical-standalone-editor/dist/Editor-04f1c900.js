@@ -48,7 +48,6 @@ var LexicalTypeaheadMenuPlugin = require('@lexical/react/LexicalTypeaheadMenuPlu
 var LexicalContextMenuPlugin = require('@lexical/react/LexicalContextMenuPlugin');
 var LexicalLinkPlugin = require('@lexical/react/LexicalLinkPlugin');
 var LexicalMarkdownShortcutPlugin = require('@lexical/react/LexicalMarkdownShortcutPlugin');
-var LexicalTableOfContents = require('@lexical/react/LexicalTableOfContents');
 var LexicalTreeView = require('@lexical/react/LexicalTreeView');
 var LexicalContentEditable$1 = require('@lexical/react/LexicalContentEditable');
 
@@ -19033,7 +19032,7 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-4e2ac84b.js'); }));
+const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-c356036e.js'); }));
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19373,7 +19372,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-b23a9b4d.js'); }));
+const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-e721bc7d.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -19900,7 +19899,7 @@ function Button({
  * LICENSE file in the root directory of this source tree.
  *
  */
-const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-ee5f88a7.js'); }));
+const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-faf6a775.js'); }));
 function convertImageElement(domNode) {
   const img = domNode;
   if (img.src.startsWith('file:///')) {
@@ -20069,7 +20068,7 @@ function $isImageNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-4ee574fb.js'); }));
+const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-4aeff9b4.js'); }));
 function convertInlineImageElement(domNode) {
   if (domNode instanceof HTMLImageElement) {
     const {
@@ -36472,10 +36471,10 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-5b4a919c.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-debaf04a.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-a0f1c690.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-adb6b467.js'); }).then(function (n) { return n.parserMarkdown; })
+  css: () => Promise.resolve().then(function () { return require('./parser-postcss-4be89bbd.js'); }).then(function (n) { return n.parserPostcss; }),
+  html: () => Promise.resolve().then(function () { return require('./parser-html-ce9027c9.js'); }).then(function (n) { return n.parserHtml; }),
+  js: () => Promise.resolve().then(function () { return require('./parser-babel-f37fe45f.js'); }).then(function (n) { return n.parserBabel; }),
+  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-42b72b3b.js'); }).then(function (n) { return n.parserMarkdown; })
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -36484,7 +36483,7 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-  } = await Promise.resolve().then(function () { return require('./standalone-25abc723.js'); }).then(function (n) { return n.standalone; });
+  } = await Promise.resolve().then(function () { return require('./standalone-b7888124.js'); }).then(function (n) { return n.standalone; });
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {
@@ -40690,133 +40689,6 @@ function TableCellResizerPlugin() {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const MARGIN_ABOVE_EDITOR = 624;
-const HEADING_WIDTH = 9;
-function indent(tagName) {
-  if (tagName === 'h2') {
-    return 'heading2';
-  } else if (tagName === 'h3') {
-    return 'heading3';
-  }
-}
-function isHeadingAtTheTopOfThePage(element) {
-  const elementYPosition = element?.getClientRects()[0].y;
-  return elementYPosition >= MARGIN_ABOVE_EDITOR && elementYPosition <= MARGIN_ABOVE_EDITOR + HEADING_WIDTH;
-}
-function isHeadingAboveViewport(element) {
-  const elementYPosition = element?.getClientRects()[0].y;
-  return elementYPosition < MARGIN_ABOVE_EDITOR;
-}
-function isHeadingBelowTheTopOfThePage(element) {
-  const elementYPosition = element?.getClientRects()[0].y;
-  return elementYPosition >= MARGIN_ABOVE_EDITOR + HEADING_WIDTH;
-}
-function TableOfContentsList({
-  tableOfContents
-}) {
-  const [selectedKey, setSelectedKey] = React.useState('');
-  const selectedIndex = React.useRef(0);
-  const [editor] = LexicalComposerContext.useLexicalComposerContext();
-  function scrollToNode(key, currIndex) {
-    editor.getEditorState().read(() => {
-      const domElement = editor.getElementByKey(key);
-      if (domElement !== null) {
-        domElement.scrollIntoView();
-        setSelectedKey(key);
-        selectedIndex.current = currIndex;
-      }
-    });
-  }
-  React.useEffect(() => {
-    function scrollCallback() {
-      if (tableOfContents.length !== 0 && selectedIndex.current < tableOfContents.length - 1) {
-        let currentHeading = editor.getElementByKey(tableOfContents[selectedIndex.current][0]);
-        if (currentHeading !== null) {
-          if (isHeadingBelowTheTopOfThePage(currentHeading)) {
-            //On natural scroll, user is scrolling up
-            while (currentHeading !== null && isHeadingBelowTheTopOfThePage(currentHeading) && selectedIndex.current > 0) {
-              const prevHeading = editor.getElementByKey(tableOfContents[selectedIndex.current - 1][0]);
-              if (prevHeading !== null && (isHeadingAboveViewport(prevHeading) || isHeadingBelowTheTopOfThePage(prevHeading))) {
-                selectedIndex.current--;
-              }
-              currentHeading = prevHeading;
-            }
-            const prevHeadingKey = tableOfContents[selectedIndex.current][0];
-            setSelectedKey(prevHeadingKey);
-          } else if (isHeadingAboveViewport(currentHeading)) {
-            //On natural scroll, user is scrolling down
-            while (currentHeading !== null && isHeadingAboveViewport(currentHeading) && selectedIndex.current < tableOfContents.length - 1) {
-              const nextHeading = editor.getElementByKey(tableOfContents[selectedIndex.current + 1][0]);
-              if (nextHeading !== null && (isHeadingAtTheTopOfThePage(nextHeading) || isHeadingAboveViewport(nextHeading))) {
-                selectedIndex.current++;
-              }
-              currentHeading = nextHeading;
-            }
-            const nextHeadingKey = tableOfContents[selectedIndex.current][0];
-            setSelectedKey(nextHeadingKey);
-          }
-        }
-      } else {
-        selectedIndex.current = 0;
-      }
-    }
-    let timerId;
-    function debounceFunction(func, delay) {
-      clearTimeout(timerId);
-      timerId = setTimeout(func, delay);
-    }
-    function onScroll() {
-      debounceFunction(scrollCallback, 10);
-    }
-    document.addEventListener('scroll', onScroll);
-    return () => document.removeEventListener('scroll', onScroll);
-  }, [tableOfContents, editor]);
-  return /*#__PURE__*/React.createElement("div", {
-    className: "table-of-contents"
-  }, /*#__PURE__*/React.createElement("ul", {
-    className: "headings"
-  }, tableOfContents.map(([key, text, tag], index) => {
-    if (index === 0) {
-      return /*#__PURE__*/React.createElement("div", {
-        className: "normal-heading-wrapper",
-        key: key
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "first-heading",
-        onClick: () => scrollToNode(key, index),
-        role: "button",
-        tabIndex: 0
-      }, ('' + text).length > 20 ? text.substring(0, 20) + '...' : text), /*#__PURE__*/React.createElement("br", null));
-    } else {
-      return /*#__PURE__*/React.createElement("div", {
-        className: `normal-heading-wrapper ${selectedKey === key ? 'selected-heading-wrapper' : ''}`,
-        key: key
-      }, /*#__PURE__*/React.createElement("div", {
-        onClick: () => scrollToNode(key, index),
-        role: "button",
-        className: indent(tag),
-        tabIndex: 0
-      }, /*#__PURE__*/React.createElement("li", {
-        className: `normal-heading ${selectedKey === key ? 'selected-heading' : ''}
-                    `
-      }, ('' + text).length > 27 ? text.substring(0, 27) + '...' : text)));
-    }
-  })));
-}
-function TableOfContentsPlugin() {
-  return /*#__PURE__*/React.createElement(LexicalTableOfContents, null, tableOfContents => {
-    return /*#__PURE__*/React.createElement(TableOfContentsList, {
-      tableOfContents: tableOfContents
-    });
-  });
-}
-
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 const documentMode = CAN_USE_DOM && 'documentMode' in document ? document.documentMode : null;
 const IS_APPLE = CAN_USE_DOM && /Mac|iPod|iPhone|iPad/.test(navigator.platform);
 CAN_USE_DOM && /^(?!.*Seamonkey)(?=.*Firefox).*/i.test(navigator.userAgent);
@@ -42577,7 +42449,7 @@ function Editor({
   })), (isCharLimit || isCharLimitUtf8) && /*#__PURE__*/React.createElement(LexicalCharacterLimitPlugin.CharacterLimitPlugin, {
     charset: isCharLimit ? 'UTF-16' : 'UTF-8',
     maxLength: 5
-  }), isAutocomplete && /*#__PURE__*/React.createElement(AutocompletePlugin, null), /*#__PURE__*/React.createElement("div", null, showTableOfContents && /*#__PURE__*/React.createElement(TableOfContentsPlugin, null)), shouldUseLexicalContextMenu && /*#__PURE__*/React.createElement(ContextMenuPlugin, null), showActions && /*#__PURE__*/React.createElement(ActionsPlugin, {
+  }), isAutocomplete && /*#__PURE__*/React.createElement(AutocompletePlugin, null), shouldUseLexicalContextMenu && /*#__PURE__*/React.createElement(ContextMenuPlugin, null), showActions && /*#__PURE__*/React.createElement(ActionsPlugin, {
     isRichText: isRichText || true
   })), showTreeView && /*#__PURE__*/React.createElement(TreeViewPlugin, null));
 }
