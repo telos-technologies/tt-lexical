@@ -10,7 +10,7 @@ var LexicalComposerContext = require('@lexical/react/LexicalComposerContext');
 var utils = require('@lexical/utils');
 var lexical = require('lexical');
 var React = require('react');
-var Editor = require('./Editor-04f1c900.js');
+var Editor = require('./Editor-5cb32c4d.js');
 require('@lexical/react/LexicalAutoFocusPlugin');
 require('@lexical/react/LexicalCharacterLimitPlugin');
 require('@lexical/react/LexicalCheckListPlugin');
