@@ -6,8 +6,8 @@
  *
  */
 
-import 'lexical-playground/src/index.css';
-
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable simple-import-sort/imports */
 import {AutoFocusPlugin} from '@lexical/react/LexicalAutoFocusPlugin';
 import {CharacterLimitPlugin} from '@lexical/react/LexicalCharacterLimitPlugin';
 import {CheckListPlugin} from '@lexical/react/LexicalCheckListPlugin';
@@ -26,13 +26,13 @@ import {RichTextPlugin} from '@lexical/react/LexicalRichTextPlugin';
 import {TabIndentationPlugin} from '@lexical/react/LexicalTabIndentationPlugin';
 import {TablePlugin} from '@lexical/react/LexicalTablePlugin';
 import useLexicalEditable from '@lexical/react/useLexicalEditable';
-import {KlassConstructor, LexicalNode} from 'lexical/src';
 import {Settings} from 'lexical-playground/src/appSettings';
 import {SharedAutocompleteContext} from 'lexical-playground/src/context/SharedAutocompleteContext';
 import {
   SharedHistoryContext,
   useSharedHistoryContext,
 } from 'lexical-playground/src/context/SharedHistoryContext';
+import 'lexical-playground/src/index.css';
 import PlaygroundNodes from 'lexical-playground/src/nodes/PlaygroundNodes';
 import ActionsPlugin from 'lexical-playground/src/plugins/ActionsPlugin';
 import AutocompletePlugin from 'lexical-playground/src/plugins/AutocompletePlugin';
@@ -78,9 +78,11 @@ import YouTubePlugin from 'lexical-playground/src/plugins/YouTubePlugin';
 import PlaygroundEditorTheme from 'lexical-playground/src/themes/PlaygroundEditorTheme';
 import ContentEditable from 'lexical-playground/src/ui/ContentEditable';
 import Placeholder from 'lexical-playground/src/ui/Placeholder';
-import * as React from 'react';
+import {KlassConstructor, LexicalNode} from 'lexical/src';
 import {useEffect, useState} from 'react';
 import {CAN_USE_DOM} from 'shared/canUseDOM';
+import {EmptyLinePlaceholderPlugin} from './plugins/EmptyLinePlaceholderPlugin';
+import './styles.css';
 
 export class CustomComponentPickerOption extends ComponentPickerOption {}
 
@@ -94,6 +96,7 @@ type EditorProps = NormalizedEditorProps & {
   articleCssClass?: string;
   getCustomBaseOptions?: GetCustomBaseOptions;
   getCustomInsertOptions?: GetCustomInsertOptions;
+  placeholderText?: string;
 };
 
 function Editor({
@@ -112,11 +115,12 @@ function Editor({
   articleCssClass,
   getCustomBaseOptions,
   getCustomInsertOptions,
+  placeholderText,
 }: EditorProps): JSX.Element {
   const {historyState} = useSharedHistoryContext();
 
   const isEditable = useLexicalEditable();
-  const text = isRichText || 'Enter some rich text...';
+  const text = placeholderText || 'Enter some rich text...';
 
   const placeholder = <Placeholder>{text}</Placeholder>;
   const [floatingAnchorElem, setFloatingAnchorElem] =
@@ -205,6 +209,7 @@ function Editor({
             <CollapsiblePlugin />
             <PageBreakPlugin />
             <LayoutPlugin />
+            <EmptyLinePlaceholderPlugin placeholder={text} />
             {floatingAnchorElem && !isSmallWidthViewport && (
               <>
                 <DraggableBlockPlugin anchorElem={floatingAnchorElem} />

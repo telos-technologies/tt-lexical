@@ -5,6 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+
+/* eslint-disable react/react-in-jsx-scope */
+// eslint-disable-next-line simple-import-sort/imports
 import {prepopulatedRichText} from 'lexical-playground/src/App';
 import {
   SettingsContext,
@@ -27,7 +30,6 @@ import {
   GetBaseOptions,
   LexicalEditor,
 } from 'lexical-standalone-editor/src/Editor';
-import * as React from 'react';
 
 console.warn(
   'If you are profiling the playground app, please ensure you turn off the debug view. You can disable it by pressing on the settings control in the bottom-left of your screen and toggling the debug view setting.',
@@ -113,6 +115,7 @@ function App(): JSX.Element {
         getCustomBaseOptions={getCustomBaseOptions}
         // @ts-ignore
         getCustomInsertOptions={getCustomInsertOptions}
+        placeholderText='Start typing or press "/" for commands'
       />
       <Settings />
     </div>
