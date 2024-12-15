@@ -17,5 +17,9 @@ This branch is base on `main -> tt-lexical` branches
 - do necessary changes
 - `npm run build:standalone`
 - `git push`
-
-See `tt-lexical-standalone-build-only` for the build version for the editor
+- `git checkout tt-lexical-standalone-build-only`
+- `git rebase feature/sa/tt-lexical-editor`
+- when rebasing if changes are in the files that were deleted commit them and accept deletion
+- `git rebase --continue`
+- `bump up version in package.json`
+- `git push`
