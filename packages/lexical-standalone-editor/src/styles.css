@@ -6,7 +6,8 @@
  *
  */
 
-.PlaygroundEditorTheme__paragraph[data-placeholder]:before {
+.PlaygroundEditorTheme__paragraph[data-placeholder]:before,
+.PlaygroundEditorTheme__h1[data-placeholder]:before {
   content: attr(data-placeholder);
   color: #999;
   pointer-events: none;

@@ -7,6 +7,7 @@
  */
 
 import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
+import {$isHeadingNode} from '@lexical/rich-text';
 import {$getRoot, $isParagraphNode, createCommand} from 'lexical';
 import {useEffect} from 'react';
 
@@ -29,7 +30,7 @@ export function EmptyLinePlaceholderPlugin({
           const element = editor.getElementByKey(child.getKey());
           if (element) {
             if (
-              $isParagraphNode(child) &&
+              ($isParagraphNode(child) || $isHeadingNode(child)) &&
               child.getTextContent().trim() === ''
             ) {
               if (element) {
