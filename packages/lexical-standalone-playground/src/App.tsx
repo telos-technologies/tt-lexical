@@ -6,9 +6,7 @@
  *
  */
 
-/* eslint-disable react/react-in-jsx-scope */
 // eslint-disable-next-line simple-import-sort/imports
-import {prepopulatedRichText} from 'lexical-playground/src/App';
 import {
   SettingsContext,
   useSettings,
@@ -103,7 +101,8 @@ function App(): JSX.Element {
       </header>
       <LexicalEditor
         {...{
-          editorState: prepopulatedRichText,
+          editorState: undefined,
+          // editorState: prepopulatedRichText,
           ...settings,
         }}
         customNodes={[ImageNode, InlineImageNode]}

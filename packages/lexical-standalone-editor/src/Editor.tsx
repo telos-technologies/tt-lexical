@@ -26,6 +26,8 @@ import {RichTextPlugin} from '@lexical/react/LexicalRichTextPlugin';
 import {TabIndentationPlugin} from '@lexical/react/LexicalTabIndentationPlugin';
 import {TablePlugin} from '@lexical/react/LexicalTablePlugin';
 import useLexicalEditable from '@lexical/react/useLexicalEditable';
+import {$createHeadingNode} from '@lexical/rich-text';
+import {$getRoot} from 'lexical';
 import {Settings} from 'lexical-playground/src/appSettings';
 import {SharedAutocompleteContext} from 'lexical-playground/src/context/SharedAutocompleteContext';
 import {
@@ -185,7 +187,7 @@ function Editor({
                   </article>
                 </div>
               }
-              placeholder={placeholder}
+              // placeholder={placeholder}
               ErrorBoundary={LexicalErrorBoundary}
             />
             <MarkdownShortcutPlugin />
@@ -273,7 +275,17 @@ export const LexicalEditor = ({
   ...restProps
 }: LexicalEditorProps) => {
   const initialConfig = {
-    editorState,
+    editorState:
+      editorState ||
+      (() => {
+        // Initialize editor state with h1
+        const root = $getRoot();
+        const heading = $createHeadingNode('h1');
+        root.append(heading);
+
+        // If you want some default text in the h1, add this:
+        // heading.append($createTextNode(''));
+      }),
     namespace: namespace || 'lexical-editor',
     nodes:
       customNodes && customNodes.length > 0

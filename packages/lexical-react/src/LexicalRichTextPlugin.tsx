@@ -19,7 +19,7 @@ export function RichTextPlugin({
   ErrorBoundary,
 }: {
   contentEditable: JSX.Element;
-  placeholder:
+  placeholder?:
     | ((isEditable: boolean) => null | JSX.Element)
     | null
     | JSX.Element;
@@ -32,7 +32,7 @@ export function RichTextPlugin({
   return (
     <>
       {contentEditable}
-      <Placeholder content={placeholder} />
+      {placeholder && <Placeholder content={placeholder} />}
       {decorators}
     </>
   );
