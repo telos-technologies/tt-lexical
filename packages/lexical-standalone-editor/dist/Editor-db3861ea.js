@@ -21,6 +21,8 @@ var LexicalRichTextPlugin = require('@lexical/react/LexicalRichTextPlugin');
 var LexicalTabIndentationPlugin = require('@lexical/react/LexicalTabIndentationPlugin');
 var LexicalTablePlugin = require('@lexical/react/LexicalTablePlugin');
 var useLexicalEditable = require('@lexical/react/useLexicalEditable');
+var richText = require('@lexical/rich-text');
+var lexical = require('lexical');
 var React$1 = require('react');
 var code = require('@lexical/code');
 var link = require('@lexical/link');
@@ -28,9 +30,7 @@ var list = require('@lexical/list');
 var mark = require('@lexical/mark');
 var overflow = require('@lexical/overflow');
 var LexicalHorizontalRuleNode = require('@lexical/react/LexicalHorizontalRuleNode');
-var richText = require('@lexical/rich-text');
 var table = require('@lexical/table');
-var lexical = require('lexical');
 var LexicalComposerContext = require('@lexical/react/LexicalComposerContext');
 var selection = require('@lexical/selection');
 var utils$1 = require('@lexical/utils');
@@ -19032,7 +19032,7 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const EquationComponent = /*#__PURE__*/React$1.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-4280a40f.js'); }));
+const EquationComponent = /*#__PURE__*/React$1.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-fca6f3e5.js'); }));
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19372,7 +19372,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React$1.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-2d741698.js'); }));
+const StickyComponent = /*#__PURE__*/React$1.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-2b1d3478.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -19899,7 +19899,7 @@ function Button({
  * LICENSE file in the root directory of this source tree.
  *
  */
-const ImageComponent = /*#__PURE__*/React$1.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-0158d2e4.js'); }));
+const ImageComponent = /*#__PURE__*/React$1.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-8270cdec.js'); }));
 function convertImageElement(domNode) {
   const img = domNode;
   if (img.src.startsWith('file:///')) {
@@ -20068,7 +20068,7 @@ function $isImageNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const InlineImageComponent = /*#__PURE__*/React$1.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-8d597117.js'); }));
+const InlineImageComponent = /*#__PURE__*/React$1.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-0a8bd4a3.js'); }));
 function convertInlineImageElement(domNode) {
   if (domNode instanceof HTMLImageElement) {
     const {
@@ -36471,10 +36471,10 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-2f8fbcfa.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-0aac5022.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-085655b9.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-6924d63a.js'); }).then(function (n) { return n.parserMarkdown; })
+  css: () => Promise.resolve().then(function () { return require('./parser-postcss-3e8a52f0.js'); }).then(function (n) { return n.parserPostcss; }),
+  html: () => Promise.resolve().then(function () { return require('./parser-html-df9ba4d2.js'); }).then(function (n) { return n.parserHtml; }),
+  js: () => Promise.resolve().then(function () { return require('./parser-babel-3eea89fb.js'); }).then(function (n) { return n.parserBabel; }),
+  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-c7d890c6.js'); }).then(function (n) { return n.parserMarkdown; })
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -36483,7 +36483,7 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-  } = await Promise.resolve().then(function () { return require('./standalone-2179510c.js'); }).then(function (n) { return n.standalone; });
+  } = await Promise.resolve().then(function () { return require('./standalone-39bdd000.js'); }).then(function (n) { return n.standalone; });
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {
@@ -42457,8 +42457,9 @@ function Editor({
     }, /*#__PURE__*/React.createElement("article", {
       className: `editor ${articleCssClass}`,
       ref: onRef
-    }, /*#__PURE__*/React.createElement(LexicalContentEditable, null))),
-    placeholder: placeholder,
+    }, /*#__PURE__*/React.createElement(LexicalContentEditable, null)))
+    // placeholder={placeholder}
+    ,
     ErrorBoundary: LexicalErrorBoundary
   }), /*#__PURE__*/React.createElement(MarkdownPlugin, null), /*#__PURE__*/React.createElement(CodeHighlightPlugin, null), /*#__PURE__*/React.createElement(LexicalListPlugin.ListPlugin, null), /*#__PURE__*/React.createElement(LexicalCheckListPlugin.CheckListPlugin, null), /*#__PURE__*/React.createElement(ListMaxIndentLevelPlugin, {
     maxDepth: 7
@@ -42503,7 +42504,16 @@ const LexicalEditor = ({
   ...restProps
 }) => {
   const initialConfig = {
-    editorState,
+    editorState: editorState || (() => {
+      // Initialize editor state with h1
+      const root = lexical.$getRoot();
+      const heading = richText.$createHeadingNode('h1');
+      root.append(heading);
+
+      // If you want some default text in the h1, add this:
+      // heading.append($createTextNode(''));
+    }),
+
     namespace: namespace || 'lexical-editor',
     nodes: customNodes && customNodes.length > 0 ? [...PlaygroundNodes$1, ...customNodes] : [...PlaygroundNodes$1],
     onError: error => {
