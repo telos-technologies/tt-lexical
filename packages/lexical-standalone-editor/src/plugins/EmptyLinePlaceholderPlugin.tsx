@@ -8,7 +8,13 @@
 
 import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
 import {$isHeadingNode} from '@lexical/rich-text';
-import {$getRoot, $isParagraphNode, createCommand} from 'lexical';
+import {
+  $getRoot,
+  $getSelection,
+  $isParagraphNode,
+  $isRangeSelection,
+  createCommand,
+} from 'lexical';
 import {useEffect} from 'react';
 
 export const SHOW_PLACEHOLDER = createCommand<boolean>('SHOW_PLACEHOLDER');
@@ -25,17 +31,23 @@ export function EmptyLinePlaceholderPlugin({
       editorState.read(() => {
         const root = $getRoot();
         const children = root.getChildren();
+        const selection = $getSelection();
+
+        // Get the currently selected node key if there's a valid range selection
+        const selectedNodeKey = $isRangeSelection(selection)
+          ? selection.anchor.key
+          : null;
 
         children.forEach((child) => {
           const element = editor.getElementByKey(child.getKey());
           if (element) {
             if (
               ($isParagraphNode(child) || $isHeadingNode(child)) &&
-              child.getTextContent().trim() === ''
+              child.getTextContent().trim() === '' &&
+              child.getKey() === selectedNodeKey && // Only show placeholder if cursor is in this node
+              child.getChildren().length === 0 // Only show placeholder if there are no child nodes
             ) {
-              if (element) {
-                element.setAttribute('data-placeholder', placeholder);
-              }
+              element.setAttribute('data-placeholder', placeholder);
             } else {
               element.removeAttribute('data-placeholder');
             }
