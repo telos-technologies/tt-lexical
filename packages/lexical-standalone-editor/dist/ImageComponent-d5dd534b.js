@@ -16,15 +16,11 @@ var useLexicalNodeSelection = require('@lexical/react/useLexicalNodeSelection');
 var utils = require('@lexical/utils');
 var lexical = require('lexical');
 var React$1 = require('react');
-<<<<<<< HEAD:packages/lexical-standalone-editor/dist/ImageComponent-607f90aa.js
-var Editor = require('./Editor-af8406d8.js');
-=======
 <<<<<<<< HEAD:packages/lexical-standalone-editor/dist/ImageComponent-f8a8940d.js
 var Editor = require('./Editor-da3606cc.js');
 ========
 var Editor = require('./Editor-f030cb98.js');
 >>>>>>>> 5c7dfb55 (added back default image nodes):packages/lexical-standalone-editor/dist/ImageComponent-d5dd534b.js
->>>>>>> c7feb79d (added back default image nodes):packages/lexical-standalone-editor/dist/ImageComponent-f8a8940d.js
 require('@lexical/react/LexicalCharacterLimitPlugin');
 require('@lexical/react/LexicalCheckListPlugin');
 require('@lexical/react/LexicalClearEditorPlugin');

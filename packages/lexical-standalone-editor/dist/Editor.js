@@ -23,7 +23,15 @@ require('@lexical/react/LexicalTablePlugin');
 require('@lexical/react/useLexicalEditable');
 require('@lexical/rich-text');
 require('lexical');
+<<<<<<< HEAD
 var Editor = require('./Editor-af8406d8.js');
+=======
+<<<<<<< HEAD
+var Editor = require('./Editor-da3606cc.js');
+=======
+var Editor = require('./Editor-f030cb98.js');
+>>>>>>> 5c7dfb55 (added back default image nodes)
+>>>>>>> c7feb79d (added back default image nodes)
 require('react');
 require('@lexical/code');
 require('@lexical/link');

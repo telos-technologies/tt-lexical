@@ -19032,15 +19032,11 @@ var katex = {
  * LICENSE file in the root directory of this source tree.
  *
  */
-<<<<<<< HEAD:packages/lexical-standalone-editor/dist/Editor-af8406d8.js
-const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-d9337347.js'); }));
-=======
 <<<<<<<< HEAD:packages/lexical-standalone-editor/dist/Editor-da3606cc.js
 const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-f00afcf2.js'); }));
 ========
 const EquationComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./EquationComponent-2ed1cc5e.js'); }));
 >>>>>>>> 5c7dfb55 (added back default image nodes):packages/lexical-standalone-editor/dist/Editor-f030cb98.js
->>>>>>> c7feb79d (added back default image nodes):packages/lexical-standalone-editor/dist/Editor-da3606cc.js
 function convertEquationElement(domNode) {
   let equation = domNode.getAttribute('data-lexical-equation');
   const inline = domNode.getAttribute('data-lexical-inline') === 'true';
@@ -19381,7 +19377,7 @@ function $isPageBreakNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-514a9b9a.js'); }));
+const StickyComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./StickyComponent-18b2f56a.js'); }));
 class StickyNode extends lexical.DecoratorNode {
   static getType() {
     return 'sticky';
@@ -19908,14 +19904,10 @@ function Button({
  * LICENSE file in the root directory of this source tree.
  *
  */
-<<<<<<< HEAD:packages/lexical-standalone-editor/dist/Editor-af8406d8.js
-const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-607f90aa.js'); }));
-=======
 const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-f8a8940d.js'); }));
 ========
 const ImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./ImageComponent-d5dd534b.js'); }));
 >>>>>>>> 5c7dfb55 (added back default image nodes):packages/lexical-standalone-editor/dist/Editor-f030cb98.js
->>>>>>> c7feb79d (added back default image nodes):packages/lexical-standalone-editor/dist/Editor-da3606cc.js
 function convertImageElement(domNode) {
   const img = domNode;
   if (img.src.startsWith('file:///')) {
@@ -20084,15 +20076,11 @@ function $isImageNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-<<<<<<< HEAD:packages/lexical-standalone-editor/dist/Editor-af8406d8.js
-const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-7777593a.js'); }));
-=======
 <<<<<<<< HEAD:packages/lexical-standalone-editor/dist/Editor-da3606cc.js
 const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-5d8ad0ac.js'); }));
 ========
 const InlineImageComponent = /*#__PURE__*/React.lazy(() => Promise.resolve().then(function () { return require('./InlineImageComponent-1d9886bc.js'); }));
 >>>>>>>> 5c7dfb55 (added back default image nodes):packages/lexical-standalone-editor/dist/Editor-f030cb98.js
->>>>>>> c7feb79d (added back default image nodes):packages/lexical-standalone-editor/dist/Editor-da3606cc.js
 function convertInlineImageElement(domNode) {
   if (domNode instanceof HTMLImageElement) {
     const {
@@ -37238,12 +37226,6 @@ function CopyButton({
  *
  */
 const PRETTIER_PARSER_MODULES = {
-<<<<<<< HEAD:packages/lexical-standalone-editor/dist/Editor-af8406d8.js
-  css: () => Promise.resolve().then(function () { return require('./parser-postcss-25f2a36b.js'); }).then(function (n) { return n.parserPostcss; }),
-  html: () => Promise.resolve().then(function () { return require('./parser-html-d2ce23d2.js'); }).then(function (n) { return n.parserHtml; }),
-  js: () => Promise.resolve().then(function () { return require('./parser-babel-62c778fe.js'); }).then(function (n) { return n.parserBabel; }),
-  markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-9dee93bd.js'); }).then(function (n) { return n.parserMarkdown; })
-=======
 <<<<<<<< HEAD:packages/lexical-standalone-editor/dist/Editor-da3606cc.js
   css: () => Promise.resolve().then(function () { return require('./parser-postcss-43419cee.js'); }).then(function (n) { return n.parserPostcss; }),
   html: () => Promise.resolve().then(function () { return require('./parser-html-056ebcbe.js'); }).then(function (n) { return n.parserHtml; }),
@@ -37255,7 +37237,6 @@ const PRETTIER_PARSER_MODULES = {
   js: () => Promise.resolve().then(function () { return require('./parser-babel-78b4fe75.js'); }).then(function (n) { return n.parserBabel; }),
   markdown: () => Promise.resolve().then(function () { return require('./parser-markdown-f45a265e.js'); }).then(function (n) { return n.parserMarkdown; })
 >>>>>>>> 5c7dfb55 (added back default image nodes):packages/lexical-standalone-editor/dist/Editor-f030cb98.js
->>>>>>> c7feb79d (added back default image nodes):packages/lexical-standalone-editor/dist/Editor-da3606cc.js
 };
 async function loadPrettierParserByLang(lang) {
   const dynamicImport = PRETTIER_PARSER_MODULES[lang];
@@ -37264,15 +37245,11 @@ async function loadPrettierParserByLang(lang) {
 async function loadPrettierFormat() {
   const {
     format
-<<<<<<< HEAD:packages/lexical-standalone-editor/dist/Editor-af8406d8.js
-  } = await Promise.resolve().then(function () { return require('./standalone-4111150c.js'); }).then(function (n) { return n.standalone; });
-=======
 <<<<<<<< HEAD:packages/lexical-standalone-editor/dist/Editor-da3606cc.js
   } = await Promise.resolve().then(function () { return require('./standalone-513db258.js'); }).then(function (n) { return n.standalone; });
 ========
   } = await Promise.resolve().then(function () { return require('./standalone-957c0732.js'); }).then(function (n) { return n.standalone; });
 >>>>>>>> 5c7dfb55 (added back default image nodes):packages/lexical-standalone-editor/dist/Editor-f030cb98.js
->>>>>>> c7feb79d (added back default image nodes):packages/lexical-standalone-editor/dist/Editor-da3606cc.js
   return format;
 }
 const PRETTIER_OPTIONS_BY_LANG = {

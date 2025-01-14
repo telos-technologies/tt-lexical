@@ -15,15 +15,11 @@ var LexicalNestedComposer = require('@lexical/react/LexicalNestedComposer');
 var LexicalPlainTextPlugin = require('@lexical/react/LexicalPlainTextPlugin');
 var lexical = require('lexical');
 var React = require('react');
-<<<<<<< HEAD:packages/lexical-standalone-editor/dist/StickyComponent-514a9b9a.js
-var Editor = require('./Editor-af8406d8.js');
-=======
 <<<<<<<< HEAD:packages/lexical-standalone-editor/dist/StickyComponent-18b2f56a.js
 var Editor = require('./Editor-da3606cc.js');
 ========
 var Editor = require('./Editor-f030cb98.js');
 >>>>>>>> 5c7dfb55 (added back default image nodes):packages/lexical-standalone-editor/dist/StickyComponent-5a1d4ce5.js
->>>>>>> c7feb79d (added back default image nodes):packages/lexical-standalone-editor/dist/StickyComponent-18b2f56a.js
 var yWebsocket = require('y-websocket');
 var yjs = require('yjs');
 require('@lexical/react/LexicalAutoFocusPlugin');

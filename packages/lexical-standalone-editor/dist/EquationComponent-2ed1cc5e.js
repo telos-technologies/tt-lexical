@@ -10,15 +10,11 @@ var LexicalComposerContext = require('@lexical/react/LexicalComposerContext');
 var utils = require('@lexical/utils');
 var lexical = require('lexical');
 var React = require('react');
-<<<<<<< HEAD:packages/lexical-standalone-editor/dist/EquationComponent-d9337347.js
-var Editor = require('./Editor-af8406d8.js');
-=======
 <<<<<<<< HEAD:packages/lexical-standalone-editor/dist/EquationComponent-f00afcf2.js
 var Editor = require('./Editor-da3606cc.js');
 ========
 var Editor = require('./Editor-f030cb98.js');
 >>>>>>>> 5c7dfb55 (added back default image nodes):packages/lexical-standalone-editor/dist/EquationComponent-2ed1cc5e.js
->>>>>>> c7feb79d (added back default image nodes):packages/lexical-standalone-editor/dist/EquationComponent-f00afcf2.js
 require('@lexical/react/LexicalAutoFocusPlugin');
 require('@lexical/react/LexicalCharacterLimitPlugin');
 require('@lexical/react/LexicalCheckListPlugin');

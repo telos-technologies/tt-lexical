@@ -6,15 +6,11 @@
  */
 'use strict';
 
-<<<<<<< HEAD:packages/lexical-standalone-editor/dist/parser-postcss-25f2a36b.js
-var _commonjsHelpers = require('./_commonjsHelpers-1a77f555.js');
-=======
 <<<<<<<< HEAD:packages/lexical-standalone-editor/dist/parser-postcss-43419cee.js
 var _commonjsHelpers = require('./_commonjsHelpers-40499add.js');
 ========
 var _commonjsHelpers = require('./_commonjsHelpers-859910af.js');
 >>>>>>>> 5c7dfb55 (added back default image nodes):packages/lexical-standalone-editor/dist/parser-postcss-8858c57b.js
->>>>>>> c7feb79d (added back default image nodes):packages/lexical-standalone-editor/dist/parser-postcss-43419cee.js
 
 function _mergeNamespaces(n, m) {
   for (var i = 0; i < m.length; i++) {
