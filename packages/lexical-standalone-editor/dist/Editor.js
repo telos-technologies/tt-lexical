@@ -23,7 +23,7 @@ require('@lexical/react/LexicalTablePlugin');
 require('@lexical/react/useLexicalEditable');
 require('@lexical/rich-text');
 require('lexical');
-var Editor = require('./Editor-af8406d8.js');
+var Editor = require('./Editor-2db4b7b2.js');
 require('react');
 require('@lexical/code');
 require('@lexical/link');
