@@ -39,7 +39,6 @@ import {
   KEY_ESCAPE_COMMAND,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical';
-import * as React from 'react';
 import {Suspense, useCallback, useEffect, useRef, useState} from 'react';
 
 import {useSharedHistoryContext} from '../context/SharedHistoryContext';
@@ -73,6 +72,8 @@ function LazyImage({
   className,
   imageRef,
   src,
+  srcSet,
+  sizes,
   width,
   height,
   maxWidth,
@@ -83,6 +84,8 @@ function LazyImage({
   imageRef: {current: null | HTMLImageElement};
   maxWidth?: number;
   src: string;
+  srcSet?: string;
+  sizes?: string;
   width: 'inherit' | number;
 }): JSX.Element {
   useSuspenseImage(src);
@@ -90,6 +93,8 @@ function LazyImage({
     <img
       className={className || undefined}
       src={src}
+      srcSet={srcSet}
+      sizes={sizes}
       alt={altText}
       ref={imageRef}
       style={{
@@ -97,6 +102,8 @@ function LazyImage({
         maxWidth,
         width,
       }}
+      loading="lazy"
+      decoding="async"
       draggable="false"
     />
   );
@@ -104,6 +111,8 @@ function LazyImage({
 
 export default function ImageComponent({
   src,
+  srcSet,
+  sizes,
   altText,
   nodeKey,
   width,
@@ -122,6 +131,8 @@ export default function ImageComponent({
   resizable: boolean;
   showCaption: boolean;
   src: string;
+  srcSet?: string;
+  sizes?: string;
   width: 'inherit' | number;
   captionsEnabled: boolean;
 }): JSX.Element {
@@ -360,6 +371,8 @@ export default function ImageComponent({
                 : null
             }
             src={src}
+            srcSet={srcSet}
+            sizes={sizes}
             altText={altText}
             imageRef={imageRef}
             width={width}

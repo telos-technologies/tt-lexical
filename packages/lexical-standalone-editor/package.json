@@ -1,6 +1,6 @@
 {
   "name": "lexical-standalone-editor",
-  "version": "0.13.1",
+  "version": "1.0.29",
   "dependencies": {
     "@lexical/clipboard": "0.13.1",
     "@lexical/code": "0.13.1",

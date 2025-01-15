@@ -8,6 +8,7 @@
 
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable simple-import-sort/imports */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {AutoFocusPlugin} from '@lexical/react/LexicalAutoFocusPlugin';
 import {CharacterLimitPlugin} from '@lexical/react/LexicalCharacterLimitPlugin';
 import {CheckListPlugin} from '@lexical/react/LexicalCheckListPlugin';
@@ -81,10 +82,13 @@ import PlaygroundEditorTheme from 'lexical-playground/src/themes/PlaygroundEdito
 import ContentEditable from 'lexical-playground/src/ui/ContentEditable';
 import Placeholder from 'lexical-playground/src/ui/Placeholder';
 import {KlassConstructor, LexicalNode} from 'lexical/src';
+import * as React from 'react';
 import {useEffect, useState} from 'react';
 import {CAN_USE_DOM} from 'shared/canUseDOM';
 import {EmptyLinePlaceholderPlugin} from './plugins/EmptyLinePlaceholderPlugin';
 import './styles.css';
+
+const reactRef = React;
 
 export class CustomComponentPickerOption extends ComponentPickerOption {}
 
