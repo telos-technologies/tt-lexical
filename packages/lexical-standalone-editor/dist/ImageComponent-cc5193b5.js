@@ -15,8 +15,8 @@ var LexicalRichTextPlugin = require('@lexical/react/LexicalRichTextPlugin');
 var useLexicalNodeSelection = require('@lexical/react/useLexicalNodeSelection');
 var utils = require('@lexical/utils');
 var lexical = require('lexical');
-var React$1 = require('react');
-var Editor = require('./Editor-42b38529.js');
+var React = require('react');
+var Editor = require('./Editor-edede5fd.js');
 require('@lexical/react/LexicalCharacterLimitPlugin');
 require('@lexical/react/LexicalCheckListPlugin');
 require('@lexical/react/LexicalClearEditorPlugin');
@@ -80,12 +80,12 @@ function ImageResizer({
   setShowCaption,
   captionsEnabled
 }) {
-  const controlWrapperRef = React$1.useRef(null);
-  const userSelect = React$1.useRef({
+  const controlWrapperRef = React.useRef(null);
+  const userSelect = React.useRef({
     priority: '',
     value: 'default'
   });
-  const positioningRef = React$1.useRef({
+  const positioningRef = React.useRef({
     currentHeight: 0,
     currentWidth: 0,
     direction: 0,
@@ -210,50 +210,50 @@ function ImageResizer({
       document.removeEventListener('pointerup', handlePointerUp);
     }
   };
-  return /*#__PURE__*/React$1.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     ref: controlWrapperRef
-  }, !showCaption && captionsEnabled && /*#__PURE__*/React$1.createElement("button", {
+  }, !showCaption && captionsEnabled && /*#__PURE__*/React.createElement("button", {
     className: "image-caption-button",
     ref: buttonRef,
     onClick: () => {
       setShowCaption(!showCaption);
     }
-  }, "Add Caption"), /*#__PURE__*/React$1.createElement("div", {
+  }, "Add Caption"), /*#__PURE__*/React.createElement("div", {
     className: "image-resizer image-resizer-n",
     onPointerDown: event => {
       handlePointerDown(event, Direction.north);
     }
-  }), /*#__PURE__*/React$1.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: "image-resizer image-resizer-ne",
     onPointerDown: event => {
       handlePointerDown(event, Direction.north | Direction.east);
     }
-  }), /*#__PURE__*/React$1.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: "image-resizer image-resizer-e",
     onPointerDown: event => {
       handlePointerDown(event, Direction.east);
     }
-  }), /*#__PURE__*/React$1.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: "image-resizer image-resizer-se",
     onPointerDown: event => {
       handlePointerDown(event, Direction.south | Direction.east);
     }
-  }), /*#__PURE__*/React$1.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: "image-resizer image-resizer-s",
     onPointerDown: event => {
       handlePointerDown(event, Direction.south);
     }
-  }), /*#__PURE__*/React$1.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: "image-resizer image-resizer-sw",
     onPointerDown: event => {
       handlePointerDown(event, Direction.south | Direction.west);
     }
-  }), /*#__PURE__*/React$1.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: "image-resizer image-resizer-w",
     onPointerDown: event => {
       handlePointerDown(event, Direction.west);
     }
-  }), /*#__PURE__*/React$1.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: "image-resizer image-resizer-nw",
     onPointerDown: event => {
       handlePointerDown(event, Direction.north | Direction.west);
@@ -325,14 +325,14 @@ function ImageComponent({
   caption,
   captionsEnabled
 }) {
-  const imageRef = React$1.useRef(null);
-  const buttonRef = React$1.useRef(null);
+  const imageRef = React.useRef(null);
+  const buttonRef = React.useRef(null);
   const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection.useLexicalNodeSelection(nodeKey);
-  const [isResizing, setIsResizing] = React$1.useState(false);
+  const [isResizing, setIsResizing] = React.useState(false);
   const [editor] = LexicalComposerContext.useLexicalComposerContext();
-  const [selection, setSelection] = React$1.useState(null);
-  const activeEditorRef = React$1.useRef(null);
-  const onDelete = React$1.useCallback(payload => {
+  const [selection, setSelection] = React.useState(null);
+  const activeEditorRef = React.useRef(null);
+  const onDelete = React.useCallback(payload => {
     if (isSelected && lexical.$isNodeSelection(lexical.$getSelection())) {
       const event = payload;
       event.preventDefault();
@@ -342,7 +342,7 @@ function ImageComponent({
     }
     return false;
   }, [isSelected, nodeKey]);
-  const onEnter = React$1.useCallback(event => {
+  const onEnter = React.useCallback(event => {
     const latestSelection = lexical.$getSelection();
     const buttonElem = buttonRef.current;
     if (isSelected && lexical.$isNodeSelection(latestSelection) && latestSelection.getNodes().length === 1) {
@@ -360,7 +360,7 @@ function ImageComponent({
     }
     return false;
   }, [caption, isSelected, showCaption]);
-  const onEscape = React$1.useCallback(event => {
+  const onEscape = React.useCallback(event => {
     if (activeEditorRef.current === caption || buttonRef.current === event.target) {
       lexical.$setSelection(null);
       editor.update(() => {
@@ -374,7 +374,7 @@ function ImageComponent({
     }
     return false;
   }, [caption, editor, setSelected]);
-  const onClick = React$1.useCallback(payload => {
+  const onClick = React.useCallback(payload => {
     const event = payload;
     if (isResizing) {
       return true;
@@ -390,7 +390,7 @@ function ImageComponent({
     }
     return false;
   }, [isResizing, isSelected, setSelected, clearSelection]);
-  const onRightClick = React$1.useCallback(event => {
+  const onRightClick = React.useCallback(event => {
     editor.getEditorState().read(() => {
       const latestSelection = lexical.$getSelection();
       const domElement = event.target;
@@ -399,7 +399,7 @@ function ImageComponent({
       }
     });
   }, [editor]);
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     let isMounted = true;
     const rootElement = editor.getRootElement();
     const unregister = utils.mergeRegister(editor.registerUpdateListener(({
@@ -451,7 +451,7 @@ function ImageComponent({
   } = Editor.useSharedHistoryContext();
   const draggable = isSelected && lexical.$isNodeSelection(selection) && !isResizing;
   const isFocused = isSelected || isResizing;
-  return /*#__PURE__*/React.createElement(React$1.Suspense, {
+  return /*#__PURE__*/React.createElement(React.Suspense, {
     fallback: null
   }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     draggable: draggable

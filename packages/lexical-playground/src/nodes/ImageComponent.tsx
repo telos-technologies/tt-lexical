@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import type {
   BaseSelection,
@@ -39,6 +40,7 @@ import {
   KEY_ESCAPE_COMMAND,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical';
+import * as React from 'react';
 import {Suspense, useCallback, useEffect, useRef, useState} from 'react';
 
 import {useSharedHistoryContext} from '../context/SharedHistoryContext';
@@ -48,6 +50,8 @@ import ContentEditable from '../ui/ContentEditable';
 import ImageResizer from '../ui/ImageResizer';
 import Placeholder from '../ui/Placeholder';
 import {ImageNode} from './ImageNode';
+
+const reactRef = React;
 
 const imageCache = new Set();
 
