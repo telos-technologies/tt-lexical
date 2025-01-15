@@ -6,7 +6,7 @@
  */
 'use strict';
 
-var _commonjsHelpers = require('./_commonjsHelpers-40499add.js');
+var _commonjsHelpers = require('./_commonjsHelpers-1a77f555.js');
 
 function _mergeNamespaces(n, m) {
     for (var i = 0; i < m.length; i++) {
